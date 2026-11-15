@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OpenMyo.App.Screens.Settings"
+             x:Class="OpenMyo.App.Screens.Settings.AiKeyView"
+             x:DataType="vm:AiKeyViewModel">
+  <Panel>
+    <Grid ColumnDefinitions="*,Auto" IsVisible="{Binding !HasKey}">
+      <TextBox PasswordChar="•" Watermark="sk-ant-…" Text="{Binding Input}"
+               AutomationProperties.Name="Anthropic API key" />
+      <Button Grid.Column="1" Margin="8,0,0,0" Content="Save Key" Command="{Binding SaveCommand}" />
+    </Grid>
+    <Grid ColumnDefinitions="*,Auto" IsVisible="{Binding HasKey}">
+      <TextBlock VerticalAlignment="Center" Text="API key saved" />
+      <Button Grid.Column="1" Content="Remove Key" Command="{Binding RemoveCommand}" />
+    </Grid>
+  </Panel>
+</UserControl>

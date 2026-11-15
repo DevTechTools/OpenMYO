@@ -1,0 +1,162 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OpenMyo.App.Screens.Library"
+             xmlns:editor="using:OpenMyo.App.Screens.Editor"
+             xmlns:controls="using:OpenMyo.App.Controls"
+             x:Class="OpenMyo.App.Screens.Library.LibraryView"
+             x:DataType="vm:LibraryViewModel">
+  <UserControl.Styles>
+    <!-- Both layouts set their panel and template explicitly, so switching back always restores full-width rows. -->
+    <Style Selector="ListBox.library:not(.grid)">
+      <Setter Property="ItemsPanel">
+        <ItemsPanelTemplate><VirtualizingStackPanel /></ItemsPanelTemplate>
+      </Setter>
+      <Setter Property="ItemTemplate">
+        <DataTemplate DataType="vm:PlaylistRowViewModel">
+          <Grid ColumnDefinitions="Auto,*" Margin="0,2">
+            <Border Classes="artwork" Width="44" Height="44">
+              <Image Source="{Binding Cover}" Stretch="UniformToFill" />
+            </Border>
+            <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center" Spacing="2">
+              <controls:HighlightedTextBlock Segments="{Binding TitleSegments}" TextTrimming="CharacterEllipsis" />
+              <TextBlock Classes="secondary" Text="{Binding Subtitle}" />
+              <!-- Search matches inside the playlist: click one to open the playlist at that track. -->
+              <ItemsControl ItemsSource="{Binding TrackMatches}" IsVisible="{Binding HasTrackMatches}">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate DataType="vm:TrackMatchViewModel">
+                    <Button Classes="subtle trackMatch" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                            Command="{Binding $parent[ListBox].((vm:LibraryViewModel)DataContext).OpenTrackMatchCommand}"
+                            CommandParameter="{Binding}" ToolTip.Tip="Open the playlist at this track"
+                            AutomationProperties.Name="{Binding AccessibleName}">
+                      <StackPanel Orientation="Horizontal" Spacing="4">
+                        <TextBlock Classes="secondary" Text="{Binding NumberLabel}" />
+                        <controls:HighlightedTextBlock Classes="secondary" Segments="{Binding Segments}" TextTrimming="CharacterEllipsis" />
+                      </StackPanel>
+                    </Button>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+              <TextBlock Classes="secondary" Margin="6,0,0,0" Text="{Binding MoreMatchesText}"
+                         IsVisible="{Binding MoreMatchesText, Converter={x:Static ObjectConverters.IsNotNull}}" />
+              <StackPanel Orientation="Horizontal" Spacing="4">
+                <Border Classes="badge" IsVisible="{Binding HasNoTracks}"><TextBlock Text="No tracks" /></Border>
+                <Border Classes="badge" IsVisible="{Binding IsMissingIcons}"><TextBlock Text="Icons" /></Border>
+                <Border Classes="badge" IsVisible="{Binding IsMissingCover}"><TextBlock Text="Cover" /></Border>
+              </StackPanel>
+            </StackPanel>
+          </Grid>
+        </DataTemplate>
+      </Setter>
+    </Style>
+    <Style Selector="ListBox.library:not(.grid) ListBoxItem">
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+    <!-- Grid layout: covers wrap to fill the pane; drag the divider to make it wider. -->
+    <Style Selector="ListBox.library.grid">
+      <Setter Property="ItemsPanel">
+        <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+      </Setter>
+      <Setter Property="ItemTemplate">
+        <DataTemplate DataType="vm:PlaylistRowViewModel">
+          <StackPanel Width="120" Margin="2" Spacing="4" ToolTip.Tip="{Binding Title}">
+            <Border Classes="artwork" Width="120" Height="120">
+              <Image Source="{Binding Cover}" Stretch="UniformToFill" />
+            </Border>
+            <controls:HighlightedTextBlock Segments="{Binding TitleSegments}" TextTrimming="CharacterEllipsis" MaxLines="2" TextWrapping="Wrap" />
+            <TextBlock Classes="secondary" Text="{Binding Subtitle}" TextTrimming="CharacterEllipsis" />
+            <TextBlock Classes="secondary" Text="{Binding TrackMatchSummary}" TextTrimming="CharacterEllipsis"
+                       IsVisible="{Binding HasTrackMatches}" />
+            <WrapPanel ItemSpacing="4" LineSpacing="4">
+              <Border Classes="badge" IsVisible="{Binding HasNoTracks}"><TextBlock Text="No tracks" /></Border>
+              <Border Classes="badge" IsVisible="{Binding IsMissingIcons}"><TextBlock Text="Icons" /></Border>
+              <Border Classes="badge" IsVisible="{Binding IsMissingCover}"><TextBlock Text="Cover" /></Border>
+            </WrapPanel>
+          </StackPanel>
+        </DataTemplate>
+      </Setter>
+    </Style>
+    <!-- Matching tracks under a playlist row: compact, indented, and clearly clickable on hover. -->
+    <Style Selector="Button.trackMatch">
+      <Setter Property="Padding" Value="6,1" />
+      <Setter Property="MinHeight" Value="0" />
+    </Style>
+  </UserControl.Styles>
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="320" MinWidth="260" MaxWidth="1200" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" MinWidth="420" />
+    </Grid.ColumnDefinitions>
+    <!-- Playlist list -->
+    <Border Background="{DynamicResource ListPaneBrush}" BorderBrush="{DynamicResource SeparatorBrush}" BorderThickness="0,0,1,0">
+      <DockPanel>
+        <Grid DockPanel.Dock="Top" ColumnDefinitions="*,Auto,Auto,Auto" Margin="12,40,12,8">
+          <TextBox Watermark="Search playlists and tracks" Text="{Binding SearchText}"
+                   AutomationProperties.Name="Search playlists and tracks" />
+          <Button Grid.Column="1" Classes="subtle square" Margin="6,0,0,0" Command="{Binding ToggleLayoutCommand}"
+                  ToolTip.Tip="Switch between list and grid" AutomationProperties.Name="Switch between list and grid">
+            <Panel>
+              <PathIcon Data="{StaticResource IconGrid}" IsVisible="{Binding !IsGridView}" />
+              <PathIcon Data="{StaticResource IconList}" IsVisible="{Binding IsGridView}" />
+            </Panel>
+          </Button>
+          <Button Grid.Column="2" Classes="subtle square" Margin="2,0,0,0" Command="{Binding RefreshCommand}"
+                  ToolTip.Tip="Refresh (Ctrl/Cmd+R)" AutomationProperties.Name="Refresh">
+            <PathIcon Data="{StaticResource IconRefresh}" />
+          </Button>
+          <Button Grid.Column="3" Classes="accent square" Margin="2,0,0,0" Command="{Binding NewPlaylistCommand}"
+                  ToolTip.Tip="New playlist" AutomationProperties.Name="New playlist">
+            <PathIcon Data="{StaticResource IconAdd}" />
+          </Button>
+        </Grid>
+        <!-- What the search found, and whether playlists are still loading, so missing results are not mistaken for none. -->
+        <TextBlock DockPanel.Dock="Top" Classes="secondary" Margin="14,0,12,8" TextWrapping="Wrap" Text="{Binding SearchSummary}"
+                   IsVisible="{Binding SearchSummary, Converter={x:Static ObjectConverters.IsNotNull}}" />
+        <!-- Filter chips: "All" resets; problem chips toggle and combine. Counts fill in as details load. -->
+        <ItemsControl DockPanel.Dock="Top" Margin="12,0,12,8" ItemsSource="{Binding Chips}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate><WrapPanel ItemSpacing="6" LineSpacing="6" /></ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="vm:FilterChipViewModel">
+              <Button Classes="chip" Classes.active="{Binding IsActive}" Classes.empty="{Binding IsEmpty}"
+                      Command="{Binding $parent[ItemsControl].((vm:LibraryViewModel)DataContext).ToggleFilterCommand}"
+                      CommandParameter="{Binding}" AutomationProperties.Name="{Binding Title}">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                  <TextBlock Text="{Binding Title}" />
+                  <TextBlock Classes="chipCount" Classes.attention="{Binding NeedsAttention}" Text="{Binding Count}" />
+                </StackPanel>
+              </Button>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <StackPanel DockPanel.Dock="Bottom" Margin="12,6" Spacing="4" IsVisible="{Binding IsBusy}">
+          <TextBlock Classes="secondary" Text="{Binding Status}" />
+          <ProgressBar Value="{Binding Progress}" Maximum="1" />
+        </StackPanel>
+        <Border DockPanel.Dock="Bottom" Classes="errorBanner" Margin="12,6" IsVisible="{Binding Error, Converter={x:Static ObjectConverters.IsNotNull}}">
+          <TextBlock TextWrapping="Wrap" Text="{Binding Error}" />
+        </Border>
+        <ListBox Classes="rounded library" Classes.grid="{Binding IsGridView}" Background="Transparent" ItemsSource="{Binding Visible}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 Selection="{Binding Selection}" SelectionMode="Multiple">
+        </ListBox>
+      </DockPanel>
+    </Border>
+
+    <GridSplitter Grid.Column="1" Width="4" Background="Transparent" ResizeDirection="Columns"
+                  ToolTip.Tip="Drag to resize" AutomationProperties.Name="Resize playlist pane" />
+
+    <!-- Detail: editor for one playlist, bulk actions for several. -->
+    <Panel Grid.Column="2">
+      <Panel IsVisible="{Binding !HasBulkSelection}">
+        <editor:PlaylistEditorView DataContext="{Binding Editor}" />
+      </Panel>
+      <Panel IsVisible="{Binding HasBulkSelection}">
+        <vm:BulkActionsView DataContext="{Binding Bulk}" />
+      </Panel>
+    </Panel>
+  </Grid>
+</UserControl>

@@ -1,0 +1,75 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:text="using:OpenMyo.Core.Text"
+             xmlns:controls="using:OpenMyo.App.Controls"
+             xmlns:vm="using:OpenMyo.App.Screens.Import"
+             xmlns:conv="using:OpenMyo.App.Converters"
+             x:Class="OpenMyo.App.Screens.Import.DraftCardView"
+             x:DataType="vm:DraftCardViewModel">
+  <Border Classes="card" Margin="0,0,0,12">
+    <StackPanel Spacing="10">
+      <Grid ColumnDefinitions="Auto,*,Auto">
+        <Border Classes="artwork" Width="56" Height="56" ToolTip.Tip="Cover found in your files">
+          <Image Source="{Binding Cover}" Stretch="UniformToFill" />
+        </Border>
+        <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center" Spacing="2">
+          <TextBox Classes="inline" FontSize="16" FontWeight="SemiBold" Text="{Binding Title}" MaxLength="{x:Static text:TitleCleaner.MaxTitleLength}" />
+          <TextBlock Classes="secondary" Margin="6,0" Text="{Binding Summary}" />
+          <TextBlock Classes="secondary" Margin="6,0" Text="{Binding SourceFolder}" TextTrimming="PathSegmentEllipsis" />
+        </StackPanel>
+        <Button Grid.Column="2" Classes="subtle" VerticalAlignment="Top" Command="{Binding DiscardCommand}"
+                ToolTip.Tip="Don't import this playlist" AutomationProperties.Name="Discard playlist">
+          <PathIcon Data="{StaticResource IconRemove}" />
+        </Button>
+      </Grid>
+
+      <StackPanel Spacing="4" IsVisible="{Binding Status, Converter={x:Static ObjectConverters.IsNotNull}}">
+        <TextBlock Classes="secondary" Text="{Binding Status}" />
+        <ProgressBar Value="{Binding Progress}" Maximum="1" />
+      </StackPanel>
+
+      <Border Classes="separator" />
+
+      <ItemsControl controls:DragReorder.IsEnabled="True" ItemsSource="{Binding Tracks}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate DataType="vm:DraftTrackViewModel">
+            <Grid Classes="row" ColumnDefinitions="Auto,Auto,Auto,*,Auto,Auto" Margin="0,2">
+              <PathIcon Classes="dragHandle" Data="{StaticResource IconGrip}" ToolTip.Tip="Drag to reorder" AutomationProperties.Name="Drag to reorder" />
+              <Button Grid.Column="1" Classes="subtle rowPlay" Classes.playing="{Binding IsPlaying}" Command="{Binding PlayCommand}"
+                      ToolTip.Tip="{Binding PlayLabel}" AutomationProperties.Name="{Binding PlayLabel}">
+                <Panel>
+                  <PathIcon Data="{StaticResource IconPlay}" IsVisible="{Binding !IsPlaying}" />
+                  <PathIcon Data="{StaticResource IconNowPlaying}" IsVisible="{Binding IsPlaying}" />
+                </Panel>
+              </Button>
+              <Button Grid.Column="2" Classes="iconSlot" Classes.picking="{Binding IsPicking}" Command="{Binding PickIconCommand}"
+                      ToolTip.Tip="{Binding IconSourceLabel}" AutomationProperties.Name="Choose icon">
+                <Panel>
+                  <PathIcon Classes="noIcon" Data="{StaticResource IconPicture}" IsVisible="{Binding !HasIcon}" />
+                  <controls:PixelImage Source="{Binding Icon}" Width="28" Height="28" />
+                </Panel>
+              </Button>
+              <StackPanel Grid.Column="3" Margin="8,0" VerticalAlignment="Center">
+                <TextBox Classes="inline" Text="{Binding Title}" MaxLength="{x:Static text:TitleCleaner.MaxTitleLength}" />
+                <TextBlock Classes="secondary" Margin="6,0" Text="{Binding FileName}" TextTrimming="CharacterEllipsis" />
+              </StackPanel>
+              <TextBlock Grid.Column="4" Classes="secondary" VerticalAlignment="Center" Margin="8,0"
+                         Text="{Binding Duration, Converter={x:Static conv:DurationConverter.Instance}}" />
+              <StackPanel Grid.Column="5" Classes="rowActions" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Classes="subtle" Command="{Binding MoveUpCommand}" ToolTip.Tip="Move up" AutomationProperties.Name="Move up">
+                  <PathIcon Data="{StaticResource IconUp}" />
+                </Button>
+                <Button Classes="subtle" Command="{Binding MoveDownCommand}" ToolTip.Tip="Move down" AutomationProperties.Name="Move down">
+                  <PathIcon Data="{StaticResource IconDown}" />
+                </Button>
+                <Button Classes="subtle" Command="{Binding RemoveCommand}" ToolTip.Tip="Leave this file out" AutomationProperties.Name="Remove">
+                  <PathIcon Data="{StaticResource IconRemove}" />
+                </Button>
+              </StackPanel>
+            </Grid>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </StackPanel>
+  </Border>
+</UserControl>

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- MCP server exposing playlist title and icon tools to Claude Desktop over stdio. -->
+  <ItemGroup>
+    <ProjectReference Include="..\OpenMyo.Core\OpenMyo.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ModelContextProtocol" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Server icon shown by MCP clients (e.g. in Claude's connector list). -->
+    <EmbeddedResource Include="Assets\openmyo-icon.png" LogicalName="OpenMyo.Mcp.openmyo-icon.png" />
+    <EmbeddedResource Include="Assets\openmyo-icon.svg" LogicalName="OpenMyo.Mcp.openmyo-icon.svg" />
+  </ItemGroup>
+</Project>

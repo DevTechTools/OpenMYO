@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OpenMyo.App.Screens.Player"
+             xmlns:conv="using:OpenMyo.App.Converters"
+             x:Class="OpenMyo.App.Screens.Player.NowPlayingView"
+             x:DataType="vm:NowPlayingViewModel">
+  <!-- Playing on this computer: what is playing on the left, transport in the middle, volume on the right. -->
+    <Panel>
+      <Grid ColumnDefinitions="2*,Auto,3*,Auto" IsVisible="{Binding HasCurrent}">
+        <StackPanel VerticalAlignment="Center" Spacing="1" Margin="0,0,16,0">
+          <TextBlock FontWeight="SemiBold" Text="{Binding Current.Title, FallbackValue=''}" TextTrimming="CharacterEllipsis" />
+          <TextBlock Classes="secondary" Text="{Binding ListTitle}" TextTrimming="CharacterEllipsis" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+          <Button Classes="subtle" Command="{Binding PreviousCommand}"
+                  ToolTip.Tip="Previous (or back to the start)" AutomationProperties.Name="Previous track">
+            <PathIcon Data="{StaticResource IconPrevious}" />
+          </Button>
+          <Button Classes="playPause" Command="{Binding PlayPauseCommand}"
+                  ToolTip.Tip="{Binding PlayPauseLabel}" AutomationProperties.Name="{Binding PlayPauseLabel}">
+            <PathIcon Data="{Binding PlayPauseIcon, Converter={x:Static conv:ResourceKeyConverter.Instance}}" />
+          </Button>
+          <Button Classes="subtle" Command="{Binding NextCommand}" ToolTip.Tip="Next track" AutomationProperties.Name="Next track">
+            <PathIcon Data="{StaticResource IconNext}" />
+          </Button>
+        </StackPanel>
+
+        <Grid Grid.Column="2" ColumnDefinitions="Auto,*,Auto" Margin="16,0" VerticalAlignment="Center">
+          <TextBlock Classes="secondary timecode" Text="{Binding Position, Converter={x:Static conv:DurationConverter.Instance}}" />
+          <Slider Grid.Column="1" Classes="seek" Minimum="0" Maximum="{Binding LengthSeconds}" Value="{Binding PositionSeconds}"
+                  AutomationProperties.Name="Position in track" />
+          <TextBlock Grid.Column="2" Classes="secondary timecode" Text="{Binding Length, Converter={x:Static conv:DurationConverter.Instance}}" />
+        </Grid>
+
+        <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+          <PathIcon Classes="volume" Data="{StaticResource IconVolume}" />
+          <Slider Classes="volume" Minimum="0" Maximum="100" Value="{Binding Volume}" AutomationProperties.Name="Volume" />
+          <Button Classes="subtle" Command="{Binding StopCommand}" ToolTip.Tip="Stop and close the player" AutomationProperties.Name="Stop">
+            <PathIcon Data="{StaticResource IconRemove}" />
+          </Button>
+        </StackPanel>
+      </Grid>
+
+      <ProgressBar IsIndeterminate="True" VerticalAlignment="Bottom" Height="2" MinHeight="2"
+                   IsVisible="{Binding IsBusy}" />
+
+      <Grid ColumnDefinitions="*,Auto" IsVisible="{Binding Error, Converter={x:Static ObjectConverters.IsNotNull}}">
+        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Foreground="{DynamicResource DangerBrush}" Text="{Binding Error}" />
+        <Button Grid.Column="1" Classes="subtle" Content="Dismiss" Command="{Binding DismissErrorCommand}" />
+      </Grid>
+    </Panel>
+</UserControl>

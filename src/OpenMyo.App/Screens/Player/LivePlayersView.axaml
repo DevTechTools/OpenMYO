@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OpenMyo.App.Screens.Player"
+             xmlns:conv="using:OpenMyo.App.Converters"
+             x:Class="OpenMyo.App.Screens.Player.LivePlayersView"
+             x:DataType="vm:LivePlayersViewModel">
+  <!-- Yoto players already playing, one line each: "Kitchen Yoto · The Gruffalo · 1:23 / 4:00", pause, volume, Control.
+       ▶ on a track still plays on the chosen output; Control makes one of these the output without changing it. -->
+  <ItemsControl ItemsSource="{Binding Rows}" IsVisible="{Binding HasRows}">
+    <ItemsControl.ItemTemplate>
+      <DataTemplate x:DataType="vm:LivePlayerRowViewModel">
+        <Grid Classes="livePlayer" ColumnDefinitions="Auto,*,Auto,Auto,Auto">
+          <Button Classes="subtle" Command="{Binding PlayPauseCommand}"
+                  ToolTip.Tip="{Binding PlayPauseLabel}" AutomationProperties.Name="{Binding PlayPauseAccessibleName}">
+            <PathIcon Data="{Binding PlayPauseIcon, Converter={x:Static conv:ResourceKeyConverter.Instance}}" />
+          </Button>
+          <TextBlock Grid.Column="1" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Margin="6,0,12,0">
+            <Run Text="{Binding Name}" FontWeight="SemiBold" />
+            <Run Text=" · " Foreground="{DynamicResource SecondaryTextBrush}" />
+            <Run Text="{Binding TrackTitle}" />
+            <Run Text=" · " Foreground="{DynamicResource SecondaryTextBrush}" />
+            <Run Text="{Binding TimeText}" Foreground="{DynamicResource SecondaryTextBrush}" />
+          </TextBlock>
+          <PathIcon Grid.Column="2" Classes="volume" Data="{StaticResource IconVolume}" />
+          <Slider Grid.Column="3" Classes="volume" Minimum="0" Maximum="{Binding VolumeMax}" TickFrequency="1"
+                  IsSnapToTickEnabled="True" Value="{Binding Volume}" Margin="6,0,12,0"
+                  AutomationProperties.Name="{Binding VolumeAccessibleName}" />
+          <Button Grid.Column="4" Classes="subtle" Content="Control" Command="{Binding ControlCommand}"
+                  ToolTip.Tip="Show this player's full controls here, and play the next ▶ on it"
+                  AutomationProperties.Name="{Binding ControlAccessibleName}" />
+        </Grid>
+      </DataTemplate>
+    </ItemsControl.ItemTemplate>
+  </ItemsControl>
+</UserControl>

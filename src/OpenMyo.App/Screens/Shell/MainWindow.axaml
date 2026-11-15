@@ -1,0 +1,74 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:OpenMyo.App.Screens.Shell"
+        xmlns:conv="using:OpenMyo.App.Converters"
+        xmlns:lib="using:OpenMyo.App.Screens.Library"
+        xmlns:imp="using:OpenMyo.App.Screens.Import"
+        xmlns:set="using:OpenMyo.App.Screens.Settings"
+        xmlns:player="using:OpenMyo.App.Screens.Player"
+        x:Class="OpenMyo.App.Screens.Shell.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="OpenMyo"
+        Icon="avares://OpenMyo/Assets/openmyo-icon.png"
+        Width="1360" Height="860" MinWidth="1000" MinHeight="620"
+        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaToDecorationsHint="True"
+        Background="{DynamicResource ContentBrush}">
+  <Window.KeyBindings>
+    <KeyBinding Gesture="Ctrl+S" Command="{Binding Library.Editor.SaveCommand}" />
+    <KeyBinding Gesture="Meta+S" Command="{Binding Library.Editor.SaveCommand}" />
+    <KeyBinding Gesture="Ctrl+O" Command="{Binding ImportPage.ChooseFoldersCommand}" />
+    <KeyBinding Gesture="Meta+O" Command="{Binding ImportPage.ChooseFoldersCommand}" />
+    <KeyBinding Gesture="Ctrl+R" Command="{Binding Library.RefreshCommand}" />
+    <KeyBinding Gesture="Meta+R" Command="{Binding Library.RefreshCommand}" />
+    <KeyBinding Gesture="MediaPlayPause" Command="{Binding PlayerBar.PlayPauseCommand}" />
+    <KeyBinding Gesture="MediaNextTrack" Command="{Binding PlayerBar.NextCommand}" />
+    <KeyBinding Gesture="MediaPreviousTrack" Command="{Binding PlayerBar.PreviousCommand}" />
+    <KeyBinding Gesture="Ctrl+Shift+Space" Command="{Binding PlayerBar.PlayPauseCommand}" />
+    <KeyBinding Gesture="Meta+Shift+Space" Command="{Binding PlayerBar.PlayPauseCommand}" />
+  </Window.KeyBindings>
+
+  <Window.DataTemplates>
+    <DataTemplate DataType="vm:SidebarItem">
+      <PathIcon Data="{Binding IconKey, Converter={x:Static conv:ResourceKeyConverter.Instance}}"
+                ToolTip.Tip="{Binding Title}" AutomationProperties.Name="{Binding Title}" />
+    </DataTemplate>
+    <DataTemplate DataType="lib:LibraryViewModel"><lib:LibraryView /></DataTemplate>
+    <DataTemplate DataType="imp:ImportViewModel"><imp:ImportView /></DataTemplate>
+    <DataTemplate DataType="set:SettingsViewModel"><set:SettingsView /></DataTemplate>
+  </Window.DataTemplates>
+
+  <Grid ColumnDefinitions="64,*">
+    <!-- Navigation rail: Library and Import at the top, Settings pinned to the bottom. Titles are tooltips. -->
+    <Border Background="{DynamicResource SidebarBrush}" BorderBrush="{DynamicResource SeparatorBrush}" BorderThickness="0,0,1,0">
+      <DockPanel Margin="0,40,0,12">
+        <Image DockPanel.Dock="Top" Source="avares://OpenMyo/Assets/openmyo-icon.png" Width="32" Height="32" Margin="0,0,0,12"
+               ToolTip.Tip="OpenMyo · unofficial, not affiliated with Yoto" />
+        <ListBox DockPanel.Dock="Bottom" Classes="rail" ItemsSource="{Binding BottomItems}" SelectedItem="{Binding SelectedBottomItem}" />
+        <ListBox Classes="rail" ItemsSource="{Binding TopItems}" SelectedItem="{Binding SelectedTopItem}" />
+      </DockPanel>
+    </Border>
+
+    <DockPanel Grid.Column="1">
+      <!-- Now playing: stays put across pages; hidden until something plays. -->
+      <player:PlayerBarView DockPanel.Dock="Bottom" DataContext="{Binding PlayerBar}"
+                            IsVisible="{Binding ShowBar}" />
+      <Panel Background="{DynamicResource ContentBrush}">
+        <ContentControl Content="{Binding CurrentPage}" />
+
+        <!-- Signed-out state for the library. -->
+        <Border IsVisible="{Binding ShowSignInPrompt}" Background="{DynamicResource ContentBrush}">
+          <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12" MaxWidth="380">
+            <TextBlock Classes="largeTitle" Text="Sign in to Yoto" HorizontalAlignment="Center" />
+            <TextBlock Classes="secondary" TextAlignment="Center" TextWrapping="Wrap"
+                       Text="OpenMyo opens your browser so you can sign in with Yoto and allow it to manage your playlists and play them on your Yoto players. If you signed in before, Yoto asks once more for the new player permission. Your password never passes through this app." />
+            <Button Classes="accent" HorizontalAlignment="Center" Content="Sign In…"
+                    Command="{Binding SettingsPage.SignInCommand}" />
+            <TextBlock Classes="secondary" Foreground="{DynamicResource DangerBrush}" TextWrapping="Wrap" TextAlignment="Center"
+                       Text="{Binding SettingsPage.Error}" IsVisible="{Binding SettingsPage.Error, Converter={x:Static ObjectConverters.IsNotNull}}" />
+          </StackPanel>
+        </Border>
+      </Panel>
+    </DockPanel>
+  </Grid>
+</Window>

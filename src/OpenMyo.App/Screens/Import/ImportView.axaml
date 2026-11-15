@@ -1,0 +1,63 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OpenMyo.App.Screens.Import"
+             xmlns:icons="using:OpenMyo.App.Screens.IconPicker"
+             xmlns:feed="using:OpenMyo.App.Screens.Import.Feed"
+             x:Class="OpenMyo.App.Screens.Import.ImportView"
+             x:DataType="vm:ImportViewModel"
+             DragDrop.AllowDrop="True">
+  <Grid ColumnDefinitions="*,280">
+    <DockPanel Margin="20,40,20,12">
+      <Grid DockPanel.Dock="Top" ColumnDefinitions="*,Auto" Margin="0,0,0,12">
+        <StackPanel Spacing="2">
+          <TextBlock Classes="largeTitle" Text="Import" />
+          <TextBlock Classes="secondary" Text="Each folder becomes a playlist. Titles, order, artwork and icons are prepared for you." />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+          <Button Content="Choose Folders…" Command="{Binding ChooseFoldersCommand}" ToolTip.Tip="Ctrl/Cmd+O" />
+          <Button Content="Choose Files…" Command="{Binding ChooseFilesCommand}" />
+          <Button Content="From Feed…" Command="{Binding ChooseFeedCommand}" ToolTip.Tip="Download podcast episodes from an RSS feed. You can also paste a feed link here." />
+        </StackPanel>
+      </Grid>
+
+      <!-- Footer: one click creates everything -->
+      <Grid DockPanel.Dock="Bottom" ColumnDefinitions="*,Auto,Auto" Margin="0,12,0,0" IsVisible="{Binding HasDrafts}">
+        <StackPanel VerticalAlignment="Center" Spacing="4">
+          <TextBlock Classes="secondary" Text="{Binding Status}" />
+          <TextBlock Foreground="{DynamicResource DangerBrush}" TextWrapping="Wrap" Text="{Binding Error}"
+                     IsVisible="{Binding Error, Converter={x:Static ObjectConverters.IsNotNull}}" />
+        </StackPanel>
+        <Button Grid.Column="1" Margin="8,0" Content="Cancel" Command="{Binding CancelCommand}" IsVisible="{Binding IsBusy}" />
+        <Button Grid.Column="1" Margin="8,0" Content="Clear" Command="{Binding ClearCommand}" IsVisible="{Binding !IsBusy}" />
+        <Button Grid.Column="2" Classes="accent" Content="Create Playlists" Command="{Binding CreateAllCommand}" />
+      </Grid>
+
+      <Panel>
+        <!-- Empty state doubles as the drop target hint -->
+        <Border IsVisible="{Binding !HasDrafts}" BorderBrush="{DynamicResource SeparatorBrush}" BorderThickness="2"
+                CornerRadius="{StaticResource CardCornerRadius}" Padding="40">
+          <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
+            <PathIcon Data="{StaticResource IconImport}" Width="32" Height="32" HorizontalAlignment="Center" />
+            <TextBlock Classes="headline" HorizontalAlignment="Center" Text="Drop folders or audio files here" />
+            <TextBlock Classes="secondary" HorizontalAlignment="Center" Text="or paste a podcast feed link" />
+            <TextBlock Classes="secondary" HorizontalAlignment="Center" Text="{Binding Status}" />
+            <ProgressBar IsIndeterminate="True" Width="200" IsVisible="{Binding IsBusy}" />
+          </StackPanel>
+        </Border>
+        <ScrollViewer IsVisible="{Binding HasDrafts}">
+          <ItemsControl ItemsSource="{Binding Drafts}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate DataType="vm:DraftCardViewModel">
+                <vm:DraftCardView />
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </ScrollViewer>
+      </Panel>
+    </DockPanel>
+
+    <icons:IconPickerView Grid.Column="1" DataContext="{Binding Picker}" />
+
+    <feed:FeedImportView Grid.ColumnSpan="2" DataContext="{Binding Feed}" />
+  </Grid>
+</UserControl>

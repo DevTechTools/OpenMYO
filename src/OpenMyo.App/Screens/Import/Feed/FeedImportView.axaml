@@ -1,0 +1,121 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OpenMyo.App.Screens.Import.Feed"
+             x:Class="OpenMyo.App.Screens.Import.Feed.FeedImportView"
+             x:DataType="vm:FeedImportViewModel"
+             IsVisible="{Binding IsOpen}">
+  <UserControl.KeyBindings>
+    <KeyBinding Gesture="Escape" Command="{Binding CloseCommand}" />
+  </UserControl.KeyBindings>
+
+  <!-- Modal over the import screen: preview a feed, tick episodes, download them as one playlist draft. -->
+  <Border Background="{DynamicResource DialogScrimBrush}">
+    <Border Classes="card" Width="680" MaxHeight="720" Margin="24" HorizontalAlignment="Center" VerticalAlignment="Center"
+            Background="{DynamicResource ContentBrush}">
+      <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Spacing="8">
+          <TextBlock Classes="headline" Text="Import from feed" />
+          <Grid ColumnDefinitions="*,Auto">
+            <TextBox x:Name="UrlBox" Text="{Binding Url}" Watermark="https://example.com/podcast/feed.xml"
+                     AutomationProperties.Name="Feed address">
+              <TextBox.KeyBindings>
+                <KeyBinding Gesture="Enter" Command="{Binding LoadCommand}" />
+              </TextBox.KeyBindings>
+            </TextBox>
+            <Button Grid.Column="1" Margin="8,0,0,0" Content="Preview" Command="{Binding LoadCommand}" />
+          </Grid>
+        </StackPanel>
+
+        <!-- Footer: status, then cancel / download -->
+        <StackPanel DockPanel.Dock="Bottom" Spacing="8" Margin="0,12,0,0">
+          <TextBlock Foreground="{DynamicResource DangerBrush}" TextWrapping="Wrap" Text="{Binding Error}"
+                     IsVisible="{Binding Error, Converter={x:Static ObjectConverters.IsNotNull}}" />
+          <StackPanel Spacing="4" IsVisible="{Binding IsBusy}">
+            <TextBlock Classes="secondary" Text="{Binding Status}" />
+            <ProgressBar Value="{Binding Progress}" Maximum="1" />
+          </StackPanel>
+          <Grid ColumnDefinitions="*,Auto,Auto">
+            <TextBlock Classes="secondary" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding SelectionSummary}" IsVisible="{Binding HasFeed}" />
+            <Button Grid.Column="1" Margin="8,0" Content="Cancel" Command="{Binding CloseCommand}" />
+            <Button Grid.Column="2" Classes="accent" Content="Download &amp; Add" Command="{Binding DownloadCommand}"
+                    IsVisible="{Binding HasFeed}" />
+          </Grid>
+        </StackPanel>
+
+        <!-- Preview: show artwork and title become the playlist cover and name -->
+        <DockPanel Margin="0,12,0,0" IsVisible="{Binding HasFeed}">
+          <Grid DockPanel.Dock="Top" ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,8">
+            <Border Classes="artwork" Width="56" Height="56" ToolTip.Tip="Playlist cover, from the feed">
+              <Image Source="{Binding Cover}" Stretch="UniformToFill" />
+            </Border>
+            <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center" Spacing="2">
+              <TextBlock FontSize="16" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" Text="{Binding Feed.Title, FallbackValue=''}" />
+              <TextBlock Classes="secondary" Text="Playlist name and cover come from the feed; you can change them before creating." TextWrapping="Wrap" />
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+              <Button Classes="subtle" Content="Latest 100" Command="{Binding SelectLatestCommand}"
+                      ToolTip.Tip="Tick the newest 100 episodes the filters let through" />
+              <Button Classes="subtle" Content="All" Command="{Binding SelectAllCommand}"
+                      ToolTip.Tip="Tick every episode the filters let through" />
+              <Button Classes="subtle" Content="None" Command="{Binding SelectNoneCommand}" ToolTip.Tip="Untick every episode" />
+            </StackPanel>
+          </Grid>
+
+          <!-- Filters hide (and untick) episodes; the order applies to the list and to the card -->
+          <Grid DockPanel.Dock="Top" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto,Auto" RowDefinitions="Auto,Auto"
+                Margin="0,0,0,8">
+            <TextBlock Classes="secondary" VerticalAlignment="Center" Text="Length" Margin="0,0,8,0" />
+            <NumericUpDown Grid.Column="1" Width="110" Minimum="0" Maximum="1440" Increment="5" FormatString="0"
+                           Watermark="Any" Value="{Binding MinMinutes}" AutomationProperties.Name="Minimum length in minutes"
+                           ToolTip.Tip="Leave out episodes shorter than this many minutes" />
+            <TextBlock Grid.Column="2" Classes="secondary" VerticalAlignment="Center" Margin="6,0" Text="to" />
+            <NumericUpDown Grid.Column="3" Width="110" Minimum="0" Maximum="1440" Increment="5" FormatString="0"
+                           Watermark="Any" Value="{Binding MaxMinutes}" AutomationProperties.Name="Maximum length in minutes"
+                           ToolTip.Tip="Leave out episodes longer than this many minutes. Episodes with no length in the feed are kept." />
+            <TextBlock Grid.Column="4" Classes="secondary" VerticalAlignment="Center" Margin="6,0,0,0" Text="min" />
+            <TextBlock Grid.Column="6" Classes="secondary" VerticalAlignment="Center" Margin="0,0,8,0" Text="Order" />
+            <StackPanel Grid.Column="7" Orientation="Horizontal" Spacing="4">
+              <RadioButton GroupName="FeedOrder" Content="Oldest first" IsChecked="{Binding !NewestFirst, Mode=OneWay}"
+                           ToolTip.Tip="Episode 1 is track 1" />
+              <RadioButton GroupName="FeedOrder" Content="Newest first" IsChecked="{Binding NewestFirst}"
+                           ToolTip.Tip="The latest episode is track 1" />
+            </StackPanel>
+
+            <Grid Grid.Row="1" Grid.ColumnSpan="8" ColumnDefinitions="*,*" Margin="0,8,0,0">
+              <TextBox Text="{Binding ExcludeText}" Watermark="Exclude titles with: trailer, bonus"
+                       AutomationProperties.Name="Exclude titles containing"
+                       ToolTip.Tip="Leave out episodes whose title contains any of these words (comma-separated)" />
+              <TextBox Grid.Column="1" Margin="8,0,0,0" Text="{Binding IncludeText}" Watermark="Only titles with: story, tale"
+                       AutomationProperties.Name="Only titles containing"
+                       ToolTip.Tip="Keep only episodes whose title contains one of these words (comma-separated)" />
+            </Grid>
+          </Grid>
+          <Border Classes="separator" DockPanel.Dock="Top" />
+          <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding Episodes}" AutomationProperties.Name="Episodes">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <VirtualizingStackPanel />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate DataType="vm:FeedEpisodeRowViewModel">
+                <Grid ColumnDefinitions="*,Auto">
+                  <CheckBox Margin="0,4" IsChecked="{Binding IsSelected}" AutomationProperties.Name="{Binding Title}">
+                    <StackPanel Margin="4,0">
+                      <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis" />
+                      <TextBlock Classes="secondary" Text="{Binding Details}" />
+                    </StackPanel>
+                  </CheckBox>
+                  <ProgressBar Grid.Column="1" Width="80" Margin="8,0" VerticalAlignment="Center" Maximum="1"
+                               Value="{Binding DownloadProgress}" IsVisible="{Binding HasDownloadStarted}" />
+                </Grid>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </ScrollViewer>
+        </DockPanel>
+      </DockPanel>
+    </Border>
+  </Border>
+</UserControl>

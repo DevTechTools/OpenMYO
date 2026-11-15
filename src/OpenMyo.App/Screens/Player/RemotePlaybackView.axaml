@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OpenMyo.App.Screens.Player"
+             xmlns:conv="using:OpenMyo.App.Converters"
+             x:Class="OpenMyo.App.Screens.Player.RemotePlaybackView"
+             x:DataType="vm:RemotePlaybackViewModel">
+  <!-- Playing on a Yoto player: the same layout as playing here, driven by what the player reports. -->
+  <Panel>
+    <Grid ColumnDefinitions="2*,Auto,3*,Auto" IsVisible="{Binding HasTrack}">
+      <StackPanel VerticalAlignment="Center" Spacing="1" Margin="0,0,16,0">
+        <TextBlock FontWeight="SemiBold" Text="{Binding Title, FallbackValue=''}" TextTrimming="CharacterEllipsis" />
+        <StackPanel Orientation="Horizontal" Spacing="6">
+          <PathIcon Classes="spinner" Data="{StaticResource IconRefresh}" IsVisible="{Binding IsPending}" />
+          <TextBlock Classes="secondary" Classes.pending="{Binding IsPending}" Text="{Binding Subtitle, FallbackValue=''}"
+                     TextTrimming="CharacterEllipsis" />
+        </StackPanel>
+      </StackPanel>
+
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+        <Button Classes="subtle" Command="{Binding PreviousCommand}"
+                ToolTip.Tip="Previous (or back to the start)" AutomationProperties.Name="Previous track">
+          <PathIcon Data="{StaticResource IconPrevious}" />
+        </Button>
+        <!-- While the player fetches the track, the button spins instead of offering pause/resume. -->
+        <Button Classes="playPause" Command="{Binding PlayPauseCommand}" IsEnabled="{Binding !IsPending}"
+                ToolTip.Tip="{Binding PlayPauseLabel}" AutomationProperties.Name="{Binding PlayPauseLabel}">
+          <Panel>
+            <PathIcon Data="{Binding PlayPauseIcon, Converter={x:Static conv:ResourceKeyConverter.Instance}}" IsVisible="{Binding !IsPending}" />
+            <PathIcon Classes="spinner" Data="{StaticResource IconRefresh}" IsVisible="{Binding IsPending}" />
+          </Panel>
+        </Button>
+        <Button Classes="subtle" Command="{Binding NextCommand}" ToolTip.Tip="Next track" AutomationProperties.Name="Next track">
+          <PathIcon Data="{StaticResource IconNext}" />
+        </Button>
+      </StackPanel>
+
+      <!-- Hidden while starting: the length is unknown until the player reports it. -->
+      <Grid Grid.Column="2" ColumnDefinitions="Auto,*,Auto" Margin="16,0" VerticalAlignment="Center" IsVisible="{Binding !IsPending}">
+        <TextBlock Classes="secondary timecode" Text="{Binding Position, Converter={x:Static conv:DurationConverter.Instance}}" />
+        <!-- One way: the slider moves itself when the length changes, so only letting go of it seeks (see code-behind). -->
+        <Slider x:Name="SeekSlider" Grid.Column="1" Classes="seek" Minimum="0" Maximum="{Binding LengthSeconds}"
+                Value="{Binding PositionSeconds, Mode=OneWay}"
+                AutomationProperties.Name="Position in track" />
+        <TextBlock Grid.Column="2" Classes="secondary timecode" Text="{Binding Length, Converter={x:Static conv:DurationConverter.Instance}}" />
+      </Grid>
+
+      <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+        <PathIcon Classes="volume" Data="{StaticResource IconVolume}" />
+        <Slider Classes="volume" Minimum="0" Maximum="{Binding VolumeMax}" TickFrequency="1" IsSnapToTickEnabled="True"
+                Value="{Binding Volume}" AutomationProperties.Name="Volume on the Yoto player" />
+        <Button Classes="subtle" Command="{Binding StopCommand}" ToolTip.Tip="Stop playing on the Yoto player" AutomationProperties.Name="Stop">
+          <PathIcon Data="{StaticResource IconRemove}" />
+        </Button>
+      </StackPanel>
+    </Grid>
+
+    <!-- No track up: "Connecting to …" while connecting, otherwise ready, so the next ▶ going to the player is no surprise. -->
+    <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" IsVisible="{Binding !HasTrack}">
+      <PathIcon Classes="spinner" Data="{StaticResource IconRefresh}" IsVisible="{Binding IsPending}" />
+      <TextBlock Classes="secondary" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding IdleText}" />
+    </StackPanel>
+
+    <ProgressBar IsIndeterminate="True" VerticalAlignment="Bottom" Height="2" MinHeight="2" IsVisible="{Binding IsPending}" />
+
+    <Grid ColumnDefinitions="*,Auto" Background="{DynamicResource SidebarBrush}"
+          IsVisible="{Binding Error, Converter={x:Static ObjectConverters.IsNotNull}}">
+      <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Foreground="{DynamicResource DangerBrush}" Text="{Binding Error}" />
+      <Button Grid.Column="1" Classes="subtle" Content="Dismiss" Command="{Binding DismissErrorCommand}" />
+    </Grid>
+  </Panel>
+</UserControl>

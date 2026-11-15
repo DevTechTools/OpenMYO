@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Optional Claude-powered icon suggestions. The app works without it. -->
+  <ItemGroup>
+    <ProjectReference Include="..\OpenMyo.Core\OpenMyo.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Anthropic" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+  </ItemGroup>
+</Project>

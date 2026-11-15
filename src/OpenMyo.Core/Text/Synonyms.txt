@@ -1,0 +1,1495 @@
+# Synonyms for icon matching. Maps a track-title word (head) to related words a child would picture as the icon.
+# Format: one line per head word, `head: syn1, syn2, ...` (best synonym first). Lines starting with '#' are comments.
+# All words are lowercase, accent-free, singular (TextNormalizer.Keywords form), single words only; heads are sorted A-Z.
+# Every synonym occurs in the icon vocabulary (Yoto or community icon titles/tags). Synonyms are used only when the head word itself has no icon match.
+abraham: star, tent, desert, sheep
+accident: ambulance, car, bandage, warning
+accordion: music, instrument, keyboard
+acrobat: circu, jump, clown
+actor: mask, theatre, camera
+actress: mask, theatre, camera
+adam: apple, garden, snake, man
+addition: plu, number, math
+advent: candle, calendar, wreath, star
+advice: speech, bulb, owl, book
+aeroplane: plane, wing, fly, airport
+afraid: ghost, scream, fear, scared
+africa: lion, elephant, zebra, map
+african: lion, elephant, zebra, map
+afternoon: sun, clock, tea
+agency: spy, building, briefcase
+airplane: plane, wing, fly, airport
+airport: plane, suitcase, fly
+alarm: clock, bell, siren
+alligator: crocodile, reptile, swamp
+alone: sad, moon
+alpaca: llama, wool, farm
+alway: heart, infinity, star
+ambulance: emergency, hospital, siren, doctor
+ancient: scroll, pyramid, temple
+angel: wing, halo, cloud, heaven
+anger: mad, red, fire, face
+angler: fish, rod, hook
+animation: film, tv, cartoon, camera
+answer: question, bulb, speech
+ant: insect, bug, picnic
+antarctic: snow, ice, penguin, polar
+antelope: deer, horn, africa
+anxiety: worry, sad, face
+ape: monkey, gorilla, jungle
+apologize: sad, heart, cry, card
+apology: sad, heart, cry, card
+apostle: cross, book, scroll
+applause: hand, clap, theatre
+april: calendar, spring, rain, flower
+archer: arrow, bow, target
+archery: arrow, bow, target
+architect: house, building, pencil, ruler
+arctic: snow, ice, polar, penguin
+ark: boat, noah, rainbow, animal
+arm: hand
+armadillo: animal, shell, desert
+armor: knight, shield, sword
+army: soldier, tank, flag
+artist: palette, brush, paint
+ash: fire, cloud, grey
+ashe: fire, cloud, grey
+asia: map, panda, dragon, temple
+athlete: runner, medal, trophy, sport
+athletic: runner, medal, trophy, sport
+audiobook: book, headphone, audio, listen
+audition: theatre, microphone, star
+august: calendar, summer, sun
+aunt: woman, family, lady
+australian: kangaroo, koala, flag, map
+author: book, pen, write, pencil
+auto: car, vehicle, road
+automobile: car, vehicle, road
+autumn: leaf, pumpkin, acorn, tree
+award: trophy, medal, star
+awesome: star, sparkle, medal
+axe: tool, tree, wood
+backpack: bag, school, hiking
+bacon: pig, meat, breakfast
+badger: animal, forest, stripe
+badminton: net
+bake: cake, bread, cookie
+baker: bread, cake, hat
+bakery: bread, cake, baker
+bald: head, man, shiny
+ballerina: dancer, ballet, shoe
+ballet: dancer, shoe, dance
+bambi: deer, forest
+band: drum, guitar, music, note
+bandage: doctor, hurt
+banjo: guitar, music, instrument, string
+bank: money, coin, building
+barber: scissor, hair, comb
+barn: farm, cow, horse, red
+barnyard: farm, barn, animal, cow
+basketball: ball, hoop, sport
+bath: bubble, soap, duck, tub
+bathrobe: bath, bed
+bathroom: bath, toilet, shower, soap
+beak: bird, duck, parrot
+beard: man, face, santa
+beat: drum, music, heart
+beaver: tree, animal
+bedroom: bed, pillow, lamp, house
+bedtime: bed, moon, sleep, pillow
+bedtimestory: book, moon, bed
+beetle: bug, insect, ladybird
+berry: strawberry, cherry, blueberry
+bestiole: insect, bug, animal
+bethlehem: star, manger, baby
+biblical: book, cross, church, scroll
+bicycle: bike, wheel
+bike: bicycle, wheel
+billiard: ball, table
+bingo: number, ball, game
+birdie: bird, wing, nest
+birdy: bird, wing, nest
+birthday: cake, balloon, present, party, candle
+bison: buffalo, bull, horn
+blackbeard: pirate, skull, ship, beard
+blackbird: bird, black, wing
+blanket: bed, sleep, soft, baby
+bless: hand, heart, star, dove
+blessed: hand, heart, star, dove
+blessing: hand, heart, star, dove
+blizzard: snow, snowflake, wind, cold
+blood: drop, red, vampire
+bluebird: bird, blue, wing
+boar: pig, forest
+bolt: lightning, thunder
+bomb: fire, skull
+boss: suit, desk, briefcase
+bounce: ball, trampoline, jump
+bowling: ball, pin
+boxing: glove, ring, fight
+braid: hair, girl, ribbon
+brain: smart, think, bulb, head
+brave: lion, shield, knight, medal
+bravery: lion, shield, knight, medal
+break: crack, heart, bone
+breakfast: egg, toast, cereal, coffee
+breeze: cloud, kite, leaf, wave
+bribe: money, coin, hand
+bride: wedding, ring, dress, heart
+bridge: river, road, troll
+britain: flag, uk, london, crown
+british: flag, uk, london, crown
+broadcast: radio, microphone, antenna, tv
+broccoli: vegetable, green, tree
+broken: crack, heart, bone, sad
+buffalo: bull, cow, horn
+build: brick, block, hammer, house
+builder: brick, hammer, helmet, house
+bull: cow, horn, farm
+bulldozer: digger, truck, construction
+bully: fist, angry, boy, mean
+bullying: fist, angry, boy
+burger: hamburger, sandwich, fry
+burglar: mask, thief, bag
+burn: fire, flame, hot
+burning: fire, flame, hot
+bush: tree, plant, leaf
+business: briefcase, suit, building, money
+businessman: suit, briefcase, man
+butcher: meat, knife, sausage
+butler: tray, hat, suit
+button: coat, shirt, sew
+buy: cart, money, bag, shop
+bye: wave, hand, plane
+cab: taxi, car, yellow
+cage: bird, lion, zoo
+calf: cow, baby, farm
+call: phone, telephone, ring
+calling: phone, telephone, ring
+calvary: cross, hill, tomb
+camel: desert, sand
+camera: photo, film, picture
+camp: tent, camping, fire, backpack
+campfire: fire, camping, marshmallow, tent
+campout: tent, camping, fire, backpack
+canada: flag, maple, leaf, moose
+candy: sweet, lollipop, sugar
+canoe: boat, river, paddle
+cap: hat, baseball, graduation
+cape: hero, superhero, cloak
+career: briefcase, suit, work
+careful: sign, warning, hand
+caring: heart, hand, love
+carnival: clown, balloon, ferri, mask
+carol: christma, note, sing, bell
+caroling: christma, note, sing, bell
+carpenter: hammer, saw, wood
+carriage: horse, princess
+carrot: rabbit, vegetable, orange
+cart: wagon, horse, shopping
+cartoon: tv, smile, animation, screen
+cathedral: church, cross, bell, building
+cattle: cow, bull, farm
+cave: bat, bear, rock, dark
+caveman: club, cave, bone, fire
+celebrate: party, firework, confetti, balloon
+celebration: party, firework, confetti, balloon
+celebrity: star, camera, microphone
+cello: violin, music, instrument, string
+cemetery: grave, tomb, stone, cross
+centaur: horse, man, bow
+centipede: insect, bug, leg
+chain: link, lock, anchor
+chameleon: lizard, reptile, colourful
+championship: trophy, medal, cup
+chapel: church, cross, bell
+chase: run, race, police, cat
+cheat: card, mask, snake
+cheater: card, mask, snake
+checker: chess, board, game
+checkmate: chess, king, board
+cheer: clap, hand, flag, trophy
+cheerful: smile, happy, sun
+cheetah: leopard, cat, spot
+chef: cook, hat, pan, kitchen
+chess: knight, board, king, queen
+chief: hat, feather, tent
+childhood: child, toy, teddy, kid
+children: child, kid, boy, girl
+chime: bell, ring, sound
+chimney: house, roof, santa
+chimp: monkey, ape, banana
+chimpanzee: monkey, ape, banana
+chip: fry, potato
+chipmunk: squirrel, nut, acorn
+chivalrou: knight, shield, horse, sword
+chivalry: knight, shield, horse, sword
+choice: arrow, question, hand, sign
+choir: sing, note, music, church
+choo: train, engine, steam
+chore: broom, bucket, clean
+christma: xma, santa, tree, reindeer, sleigh
+cinderella: shoe, castle, pumpkin, princess
+cinema: movie, film, popcorn, camera
+circle: shape, ball, ring
+clam: shell, sea, pearl
+clap: hand, cheer
+class: school, desk, book, pencil
+classical: violin, music, piano, note
+classroom: school, desk, book, pencil
+clau: santa, christma, hat, beard
+claw: cat, crab, bear
+clean: soap, broom, bubble, bucket
+cleaning: soap, broom, bubble, bucket
+clever: brain, bulb, fox, glass
+climb: ladder, mountain, rope
+climbing: ladder, mountain, rope
+cloak: cape, wizard, coat
+close: door, lock, key
+closed: door, lock, key
+clothing: clothe, shirt, dress, sock
+clover: shamrock, green, leaf
+clown: circu, nose, laugh
+club: people, team, flag, heart
+coach: bus, carriage, horse
+coat: jacket, winter, clothe
+cobweb: spider, web, ghost
+cockerel: rooster, chicken, farm, morning
+cocoa: chocolate, cup, mug, hot
+coconut: palm, tropical, fruit
+cocoon: caterpillar, butterfly
+coffee: cup, mug, bean
+cog: gear, machine, engine
+coin: money, gold, treasure
+cold: snow, ice, snowflake, thermometer
+colour: rainbow, paint, palette, crayon
+comb: hair, brush
+comedy: laugh, clown, mask, theatre
+comet: star, space, fire
+commander: hat, army, medal
+commentary: microphone, speech, book
+company: building, office, briefcase
+compass: map, north, direction
+compassion: heart, hand, love
+competition: trophy, medal, flag, race
+computer: keyboard, screen, mouse
+concert: music, microphone, guitar, stage
+conflict: sword, fight, battle, flag
+contest: trophy, medal, flag, race
+continent: map, globe, earth
+cook: chef, pan, pot, kitchen
+cooking: pan, pot, chef, spoon
+cooky: biscuit, chocolate, cracker
+cooperation: people, team, hand
+cop: police, officer, badge
+coral: reef, fish, sea
+cosmic: star, space, planet, universe
+cosmo: star, space, planet, universe
+cost: money, coin, tag
+costume: mask, hat, dress
+cough: sick, mouth, doctor
+country: flag, map, globe, farm
+courage: lion, brave, shield, medal
+courageou: lion, brave, shield, medal
+court: scale, hammer, judge
+cowboy: hat, horse, boot, western
+crab: sea, beach, claw, shell
+crack: egg, broken
+craft: scissor, paper, art
+crane: building, construction, bird
+crayon: draw, colour, art, pencil
+crazy: clown, spiral, funny, silly
+create: art, paint, palette, brush
+creation: earth, sun, moon, star
+creative: art, paint, palette, brush
+creativity: art, paint, palette, brush
+creepy: spider, ghost, skull, bat
+crew: ship, pirate, people, team
+cried: cry, tear, sad
+crime: police, mask, thief
+criminal: police, mask, thief
+croc: crocodile, alligator, reptile
+crow: bird, black, wing
+crowd: people, person, human
+crucifixion: cross, tomb, hammer
+crying: cry, tear, sad
+crystal: diamond, gem, ball
+cub: lion, bear, baby, tiger
+cucumber: vegetable, green, salad
+cupid: heart, arrow, valentine
+curiosity: question, magnifying, cat
+curiou: question, magnifying, cat
+curly: hair, spiral, girl
+cycling: bicycle, bike, wheel
+daddy: father, dad, man
+daisy: flower, spring, plant
+dancing: dancer, music, ballet, shoe, dance
+danger: warning, skull, sign, fire
+dangerou: warning, skull, sign, fire
+darkness: moon, night, black
+dart: target, arrow
+daughter: girl, child, family
+david: harp, crown, shepherd
+dawn: sun, sunrise, morning, rooster
+dead: skull, grave, bone, ghost
+deal: handshake, hand, money, coin
+death: skull, grave, tomb, bone
+deceive: mask, snake, spy
+december: calendar, snow, winter, christma
+deception: mask, snake, spy
+decision: question, arrow, scale, hand
+deer: reindeer, antler, forest
+defeat: sad, flag, sword
+deliver: truck, box, mail, van
+delivery: truck, box, mail, van
+dentist: tooth, teeth, toothbrush
+dessert: cake, icecream, cupcake, pie
+determination: mountain, flag, fist
+devil: horn, fire, demon, red
+died: grave, skull, tomb, cross
+digger: excavator, truck, construction
+dilemma: question, scale, arrow
+diligent: bee, ant, book
+dinner: plate, fork, knife, table
+dino: dinosaur, rex, bone
+director: camera, film
+dirty: mud, soap, pig, bath
+disciple: cross, book, scroll
+discipline: school, ruler, teacher
+disco: dance, music, ball, light
+discover: magnifying, map, telescope, treasure
+discovery: magnifying, map, telescope, treasure
+dive: fish, wave, water, shark
+division: number, math, pie
+diwali: candle, lamp, firework, light
+doggy: dog, puppy, bone
+dolphin: ocean, sea, fish, jump
+donkey: horse, farm, ear
+doubt: question, thought, face
+dove: bird, peace, olive, white
+dragonfly: insect, wing, pond
+drama: mask, theatre, curtain, stage
+draw: pencil, crayon, art, paint
+drawing: pencil, crayon, art, paint
+dream: sleep, moon, cloud, star
+dreaming: sleep, moon, cloud, star
+dress: girl, clothe
+dresse: dress, girl, clothe
+drill: tool, builder
+drink: cup, glass, bottle, straw
+drinking: cup, glass, bottle, straw
+drive: car, wheel, road
+driver: car, wheel, bus
+driving: car, wheel, road
+drop: water, rain, tear
+dump: truck, construction
+dungeon: skull, castle, key, chain
+dwarf: hat, mine, small
+dying: grave, skull, tomb, cross
+eagle: bird, wing, flag, america
+easter: egg, bunny, chick, cross
+eat: fork, spoon, plate, mouth
+eating: fork, spoon, plate, mouth
+eclipse: sun, moon, planet
+eden: garden, apple, snake, tree
+education: school, book, pencil, graduation
+eel: fish, sea, snake
+egypt: pyramid, sand, camel
+egyptian: pyramid, mummy, camel
+eid: moon, crescent, mosque, star
+election: box, flag
+electrician: bulb, lightning, tool
+electricity: lightning, bulb, battery
+elevator: building, button
+elk: deer, antler, moose
+elve: elf, christma, santa, hat
+email: envelope, letter, mail
+embarrass: blush, face
+embarrassed: blush, face
+embarrassing: blush, face
+emerald: gem, green, diamond
+enemy: sword, devil, monster, skull
+energy: lightning, battery, sun
+engaged: ring, heart, diamond
+engineer: gear, tool
+england: flag, uk, london, crown
+english: flag, book, british, uk
+enormou: elephant, giant, tall
+environment: tree, earth, leaf, recycle
+envy: green, monster, eye
+epiphany: star, crown, camel, gift
+escape: run, door, key, rocket
+esther: crown, queen, king, scroll
+europe: map, flag, castle, eiffel
+eve: apple, garden, snake, woman
+evening: moon, sunset, dinner, clock
+evil: devil, skull, monster, witch
+exam: pencil, paper, test, school
+excavator: digger, truck, construction
+exercise: runner, heart, yoga
+exodu: sea, staff, tablet, desert
+expedition: map, compass, backpack, tent
+experiment: lab, microscope, bottle
+explain: speech, book, teacher
+explode: fire, bomb, firework
+exploration: map, compass, telescope, explorer
+explorer: map, compass, backpack, telescope
+explosion: fire, bomb, firework
+fair: ferri, balloon, tent, ticket
+fairytale: fairy, castle, book, princess
+faith: cross, heart, hand, church
+falcon: bird, eagle, wing
+fame: star, camera, microphone
+famou: star, camera, microphone
+fantasy: dragon, unicorn, wizard, castle
+farewell: wave, hand, plane, ship
+farmer: farm, barn, hat, tractor
+farmyard: farm, barn, animal, cow
+fashion: dress, clothe, shoe, hat
+fast: rocket, car, race, speed
+faster: rocket, car, race
+fawn: deer, baby, forest
+fear: ghost, scream, scared, skull
+feast: turkey, plate, table, cake
+feather: bird, wing, quill
+february: calendar, heart, valentine
+feet: foot, shoe, sock
+feline: cat, tiger, lion
+fence: garden, farm, wood
+ferry: boat, ship, water
+feud: sword, fight, angry
+fever: thermometer, hospital, bed
+field: grass, farm, wheat, flower
+fight: sword, glove, battle
+fighting: sword, glove, battle
+film: movie, camera, popcorn
+find: magnifying, glass, map
+finding: magnifying, glass, map
+fireball: fire, flame, magic
+firefighter: fire, truck, helmet
+firefly: insect, light, night
+fireman: fire, truck, helmet
+firetruck: fire, truck
+firework: rocket, star, sparkle, night
+fisherman: fish, boat, hat, net
+fishing: fish, rod, boat, hook
+fishy: fish, ocean, sea
+fitness: runner, heart, yoga
+fix: hammer, wrench, tool, gear
+flashlight: light, torch
+flight: plane, fly, wing
+flood: water, rain, wave, boat, ark
+flour: bread, baking, bag
+flu: thermometer, hospital, bed
+flute: music, instrument, note, pipe
+fly: wing, bird, plane, butterfly, insect
+foal: horse, pony, baby
+foe: sword, devil, monster, skull
+fog: cloud, grey, mist
+fool: clown, silly, joke
+foolish: clown, silly, joke
+foot: feet, shoe, toe, sock
+footprint: foot, paw, print
+forever: heart, infinity, star
+forgive: heart, hand, hug, dove
+forgiveness: heart, hand, hug, dove
+forgiving: heart, hand, hug, dove
+fortune: coin, gold, crystal, star
+fossil: bone, dinosaur, rock
+free: bird, flag, wing, open
+freedom: bird, flag, wing
+freezing: ice, snow, cold, thermometer
+french: france, flag, eiffel
+friday: calendar, day, week
+friendly: friend, smile, hand
+friendship: friend, hand, heart, people
+fright: ghost, scream, scared
+frisbee: disc, dog, park
+froggy: frog, pond, green
+frosty: snowman, snow, winter, ice
+fry: potato, burger, chip
+fuel: gas, pump, car
+fugitive: run, police, mask
+fun: smile, laugh, party, game
+furiou: angry, mad, fire, red
+futbol: soccer, football, ball
+galaxy: star, space, planet, universe
+garage: car, wheel, house
+garbage: bin, trash, truck
+gardening: flower, plant, spade
+gate: fence, garden, farm
+gator: alligator, crocodile, reptile
+gear: machine, engine
+gecko: lizard, reptile, green
+geese: goose, bird, duck, farm
+gelato: icecream, cone, sweet
+general: hat, army, medal
+generosity: gift, heart, present
+generou: gift, heart, present, hand
+genie: lamp, magic, bottle
+geniu: brain, bulb, glass
+gentleman: man, hat, suit
+gentlemen: man, hat, suit
+german: germany, flag
+ghoul: ghost, skull, spooky
+gift: present, bow, box, ribbon
+giggle: laugh, smile, clown
+gingerbread: cookie, biscuit, house, christma
+giving: gift, present, hand, heart
+glad: smile, happy, face
+globe: world, earth, map
+glove: hand, winter, mitten
+gnome: garden, hat, beard
+goal: football, soccer, net, ball
+goat: farm, horn, billy
+goldfish: fish, bowl, gold
+golf: ball, club, flag
+goliath: giant, stone, shield
+goodbye: wave, hand, plane
+goodnight: moon, bed, star, sleep
+gorilla: monkey, ape, jungle
+gospel: book, cross, church, dove
+government: building, flag, people
+grace: heart, dove, hand, cross
+graduation: hat, cap, school
+grandad: grandpa, man, old
+grandfather: grandpa, man, old
+grandmother: grandma, woman, granny
+granny: grandma, woman, old
+grape: fruit, wine, purple
+grass: green, lawn, field
+grasshopper: insect, green, cricket
+gratitude: heart, thank, hand, gift
+grave: tomb, stone, cross
+gray: elephant, cloud, rain
+greatest: star, medal, trophy, champion
+greed: money, coin, gold, pig
+greedy: money, coin, pig
+greek: helmet, temple, sword
+greeting: wave, hand, smile
+groom: wedding, ring, man
+group: people, team
+grow: plant, seed, sprout, flower
+growing: plant, seed, sprout, flower
+grown: plant, seed, tree
+grudge: angry, red, face
+grumpy: angry, mad, face, frown
+guard: shield, hat, castle
+guardian: shield, angel, heart
+guest: person, hotel, door, bell
+guilt: sad, face
+guilty: sad, face
+gull: bird, sea, beach
+gun: target, police, sheriff
+gym: weight
+gymnastic: medal, ribbon
+hair: comb, brush, scissor
+haircut: scissor, comb, hair
+hallow: pumpkin, witch, ghost, bat
+hallowe: pumpkin, witch, ghost, bat
+halloween: pumpkin, witch, ghost, bat
+ham: pig, meat, sandwich
+hamburger: burger, sandwich, fry
+hammer: tool, builder
+hamster: mouse, wheel, rat, pet
+hanukkah: menorah, candle, star, dreidel
+happiness: smile, face, sun, joy
+hare: rabbit, bunny, ear
+harp: music, instrument, string, angel
+harvest: corn, wheat, pumpkin, tractor
+haunted: ghost, house, spooky, skull
+hawaii: palm, surf, flower, beach
+hawk: bird, eagle, wing
+head: face, hat, brain
+heal: bandage, doctor, heart, hospital
+healing: bandage, doctor, heart, hospital
+health: heart, apple, doctor, hospital
+healthy: apple, vegetable, carrot, heart
+hear: ear, headphone, audio
+hearing: ear, headphone, audio
+heat: sun, fire, flame, thermometer
+heaven: cloud, angel, star, halo
+heavenly: cloud, angel, star, halo
+hedgehog: spike, animal, forest
+helicopter: fly, rescue
+hell: fire, devil, flame, demon
+hello: wave, hand, smile
+hen: chicken, egg, farm, bird
+heroe: cape, superhero, shield, medal
+heron: bird, water
+hi: wave, hand, smile
+hide: eye, box, tree, mask
+hiding: eye, box, tree, mask
+highway: road, car, truck, traffic
+hike: boot, backpack, mountain, map
+hiking: boot, backpack, mountain, map
+hill: mountain, grass, tree
+hippo: hippopotamu, africa, river
+hippopotamu: hippo, africa, river
+historical: scroll, book, castle
+history: scroll, book, castle
+hive: bee, honey
+hockey: stick, ice
+hog: pig, farm
+holiday: beach, suitcase, sun, calendar
+holly: christma, leaf, berry, wreath
+homecoming: house, door, heart, roof
+homework: book, pencil, school, desk
+honest: scale, heart, book
+honesty: scale, heart, book
+honey: bee, jar, bear
+hope: star, sun, rainbow, light
+hopscotch: jump, foot
+horn: trumpet, music, unicorn, instrument, bull
+hornet: bee, insect
+hospital: doctor, nurse, ambulance
+hound: dog, bone, paw
+hour: clock, watch, hourglass
+hug: heart, love, bear
+humble: heart, hand, shy
+humility: heart, hand, shy
+hummingbird: bird, flower, wing
+humor: laugh, funny, clown
+hungry: fork, plate, stomach, spoon
+hunt: arrow, bow, deer, magnifying
+hunting: arrow, bow, deer, gun
+hurricane: storm, cloud, wind
+hurt: bandage, doctor, cry
+husband: man, ring, family, heart
+hygiene: soap, hand, tooth, bath
+hymn: church, music, note, sing
+icy: ice, snow, cold
+idea: bulb, brain, light
+iguana: lizard, reptile, green
+ill: thermometer, hospital, bed, doctor
+illness: thermometer, hospital, bed, doctor
+imaginary: cloud, star, rainbow
+imagination: brain, cloud, star, rainbow
+imp: devil, monster, horn
+independence: flag, firework, america, star
+indian: tent, feather, arrow, canoe
+infant: baby, toddler, bottle
+infinity: heart, star, circle
+injury: bandage, doctor
+innocent: angel, halo, white, child
+insane: crazy, spiral, brain
+inspiration: bulb, star, idea
+integrity: heart, shield, scale
+internet: computer, world, globe
+interview: microphone, radio, talk, speech
+intriguing: question, magnifying, mystery
+intro: hand, wave, microphone
+introduction: hand, wave, microphone
+invention: bulb, gear, robot, idea
+inventor: bulb, gear, robot, idea
+investigation: magnifying, detective, spy
+ireland: shamrock, clover, flag, leprechaun
+irish: shamrock, clover, flag, leprechaun
+isaac: sheep, tent
+italian: pizza, pasta, flag, italy
+jacket: coat, winter, clothe
+jacob: ladder, star, tent, sheep
+jail: lock, key, police, prison
+jam: strawberry, jar, bread, toast
+january: calendar, snow, winter
+japanese: japan, sushi, flag, cherry
+jazz: saxophone, music, note, trumpet
+jealou: green, monster, eye
+jealousy: green, monster, eye
+jean: pant, trouser, clothe
+jellyfish: sea, ocean, fish
+jericho: wall, trumpet, brick, castle
+jet: plane, fly, sky, speed
+jewel: diamond, gem, ring, crown
+jewelry: jewel, diamond, ring, necklace
+jingle: bell, christma, sound
+job: book, hat, briefcase, hammer, work
+jogging: runner, shoe, sneaker
+joke: laugh, funny, clown, smile
+jonah: whale, fish, boat, sea
+joseph: coat, rainbow, star, sheep
+journey: map, road, compass, backpack
+joy: smile, happy, sun, heart
+joyful: smile, happy, sun, heart
+judge: scale, hammer, book
+judo: belt, fight, kick
+juggler: circu, ball, clown
+juice: orange, glass, fruit
+july: calendar, summer, sun, firework
+jump: kangaroo, frog, rope, rabbit
+jumper: sweater, winter, clothe
+jumping: kangaroo, frog, rope, rabbit
+june: calendar, summer, sun
+justice: scale, hammer, book
+kangaroo: australia, animal, jump
+karate: belt, fight, kick
+kayak: boat, river, paddle
+kind: heart, hand, love
+kindergarten: school, abc, crayon, block
+kindness: heart, hand, love, gift
+kingdom: castle, crown, king, queen
+kiss: heart, lip, love
+kitchen: cook, pan, spoon, fork
+kite: wind, sky, string
+knitting: wool, needle, yarn
+koala: bear, tree, australia
+lab: science, microscope
+laboratory: lab, microscope
+ladder: climb, builder, wall
+ladybug: ladybird, insect, red, spot
+lake: water, boat, duck, pond
+lamb: sheep, wool, baby
+lamp: light, genie, bulb
+language: speech, talk, book, word
+lantern: light, lamp, candle, china
+laptop: computer, keyboard, screen
+laughing: laugh, smile, funny
+laundry: washing, clothe, soap
+law: scale, hammer, book
+lawman: sheriff, star, badge, hat
+lawn: grass, mower, green
+lawyer: scale, book, suit
+laziness: sloth, bed, sleep
+lazy: sloth, bed, sleep
+leader: flag, crown, hand
+learn: book, school, pencil, brain
+leave: leaf, tree, autumn, green
+leg: foot, knee, trouser
+legend: knight, book, scroll, castle
+lego: brick, block, toy
+lemonade: lemon, glass, juice
+lemur: monkey, tail, animal
+leprechaun: shamrock, gold, hat, rainbow
+lesson: book, school, pencil, teacher
+liar: nose, mask
+library: book, shelf, read
+lie: nose, mask
+lifeboat: boat, rescue, ship
+lift: elevator, building, button
+lime: lemon, green, citru
+lioness: lion, cat, africa
+lip: kiss, mouth
+listen: ear, headphone, audio
+listening: ear, headphone, audio
+lizard: reptile, gecko, green
+lobster: crab, sea, claw
+lock: key, door
+locomotive: train, engine, steam
+london: bus, uk, bridge, clock
+lonely: sad, alone, cry, moon
+look: eye, glass, magnifying
+looking: eye, glass, magnifying
+lorry: truck, van, road
+lose: sad, cry, thumb
+loser: sad, thumb, cry
+lost: map, question, compass, sign
+lottery: ticket, ball, number
+loud: speaker, megaphone, sound
+loving: heart, kiss, hug
+loyal: heart, dog, shield, hand
+loyalty: heart, dog, shield, hand
+luck: clover, horseshoe, star, dice
+lucky: clover, horseshoe, star, dice
+luggage: suitcase, bag, travel
+lullaby: moon, baby, sleep, star
+lumberjack: axe, tree, wood
+lunch: sandwich, plate, fork, apple
+lynx: cat, tiger, forest
+lyric: note, music, book
+mad: angry, red, face
+madness: crazy, spiral, brain, clown
+magi: star, crown, camel, gift
+magical: wand, wizard, star, sparkle
+magician: wand, hat, rabbit, magic
+maid: broom, dress, clean
+mailman: mail, post, letter, envelope
+mama: mother, mum, woman
+mammoth: elephant, ice
+manger: baby, star, nativity
+mango: fruit, orange, tropical
+manner: hand, smile, heart
+march: calendar, spring, flower
+market: stall, basket, shop, fruit
+marriage: ring, heart, bride, cake
+married: ring, heart, wedding
+marshmallow: campfire, sweet, sugar
+martial: belt, fight, kick
+match: football, soccer, ball
+mayflower: ship, pilgrim, boat, flower
+mayor: hat, building, town
+meadow: flower, grass, butterfly, daisy
+meal: plate, fork, knife, table
+meat: steak, sausage, ham
+mechanic: wrench, car, tool, garage
+medic: doctor, hospital, nurse
+medical: doctor, hospital, stethoscope, nurse
+medicine: pill, bottle, doctor, hospital
+medieval: castle, knight, sword, shield
+meerkat: animal, africa, desert
+meet: hand, shake, people
+meeting: people, table, hand, clock
+melody: note, music
+melon: watermelon, fruit, green
+mend: needle, thread, hammer, bandage
+menorah: candle, hanukkah, star
+mercy: heart, hand, dove
+mess: bin, trash, broom
+message: envelope, letter, mail, bubble
+messiah: cross, crown, star
+messy: bin, trash, broom
+meteor: star, space, fire, rock
+mexican: cactu, flag, taco
+mexico: cactu, flag, taco
+mice: mouse, cheese, rat
+midnight: moon, clock, owl, star
+mighty: hero, cape
+miner: pickaxe, helmet, cave, gold
+mining: pickaxe, helmet, cave, gold
+minu: math
+minute: clock, watch, hourglass
+miracle: star, sparkle, magic, light
+mirror: glass, face, reflection
+mischief: cheeky, naughty, devil
+missing: question, magnifying
+mistletoe: christma, kiss, leaf
+mitten: glove, hand, winter
+mobile: phone, telephone, device
+modesty: blush, shy, face
+mommy: mother, mum, woman
+monday: calendar, day, week
+money: coin, dollar, bank
+month: calendar, date, moon
+moo: cow, milk, farm
+moonlight: moon, night, star
+moose: deer, antler, canada
+morning: sun, sunrise, rooster, breakfast
+mose: staff, tablet, sea, bush
+mosque: crescent, moon, building
+mosquito: insect, bug, bite
+moth: butterfly, insect, night
+motor: engine, car, machine
+motorbike: motorcycle, bike, wheel
+motorcycle: motorbike, bike, wheel
+moustache: man, face, mustache
+mouth: lip, tongue, teeth, smile
+mud: puddle, pig, brown
+mule: horse, donkey, farm
+mummy: egypt, pyramid, bandage, mother, mum
+muscle: arm, strong
+musician: note, music, instrument, guitar
+mustache: man, face
+myth: dragon, book, scroll, sword
+mythology: dragon, book, scroll, sword
+nail: hammer, tool, wood
+nana: grandma, woman, old
+nap: bed, sleep, pillow, moon
+nativity: baby, star, manger
+natural: tree, leaf, flower
+naughty: devil, cheeky, mischief
+necklace: jewel, diamond, pearl
+needle: thread, sew, pin
+neighbor: house, person, fence
+neighborhood: house, street, people
+neighbour: house, person, fence
+nervou: sad, face, sweat
+nest: bird, egg, tree
+newborn: baby, bottle
+newspaper: new, paper, read
+newt: lizard, frog, salamander
+newyear: firework, clock, party
+nice: smile, heart, thumb
+nightgown: bed, night, sleep
+nightmare: scary, ghost, skull, bed
+nighttime: moon, star, owl, bed
+noah: ark, boat, rainbow, dove
+nobility: crown, shield, knight, king
+noble: crown, shield, knight, king
+noel: christma, bell, star, angel
+noise: sound, speaker, loud, drum
+noodle: bowl, soup, pasta
+november: calendar, autumn, turkey, leaf
+nurse: doctor, hospital, hat
+nursery: baby, rhyme, bed
+nut: acorn, squirrel, peanut
+obedience: sign, hand, thumb
+obey: sign, hand, thumb
+october: calendar, pumpkin, autumn, leaf
+office: desk, briefcase, building
+officer: police, badge, hat
+ogre: monster, green
+oink: pig, farm, piglet
+olympic: medal, torch, ring, trophy
+omelette: egg, breakfast, pan
+onion: vegetable, tear, cook
+open: door, key, book
+opinion: speech, bubble, thought, thumb
+opossum: animal, tail, forest
+orangutan: monkey, ape, jungle
+orca: whale, ocean, fish
+orchestra: violin, music, instrument
+ornament: christma, bauble, tree, star
+ostrich: bird, africa, egg
+otter: animal, water, fish
+outfit: clothe, shirt, dress
+owlet: owl, bird, night
+ox: cow, bull, farm
+oyster: shell, sea, pearl
+package: box, mail, post, gift
+pact: handshake, hand, heart
+painter: brush, paint, palette
+pajama: bed, night, sleep
+palace: castle, crown, king, queen
+pancake: syrup, breakfast, butter
+pant: trouser, clothe, jean
+panther: cat, black, tiger
+papa: father, dad, man
+parable: book, shepherd, seed, scroll
+parachute: sky, fly, jump
+paramedic: ambulance, doctor, emergency
+parcel: box, mail, post, gift
+pari: eiffel, france, tower
+park: tree, swing, slide
+passover: star, bread, wine
+pasta: spaghetti, noodle, italian, bowl
+pastor: church, cross, book, shepherd
+patience: clock, hourglass, snail
+patient: clock, hourglass, snail
+patrick: shamrock, clover, hat, leprechaun
+peace: dove, heart, flag, olive
+peaceful: dove, heart, moon, flower
+peacock: bird, feather, tail, colourful
+pear: fruit, tree, green
+pearl: shell, oyster, treasure
+pegasu: horse, wing, magic
+pelican: bird, sea
+pepper: vegetable, red, spice
+performance: theatre, stage, mask, curtain
+perseverance: ant, mountain, climb
+persistence: ant, mountain, climb
+petrol: gas, pump, car
+pharaoh: egypt, pyramid, crown, mummy
+phone: telephone, call, mobile
+photo: camera, picture, frame
+pickaxe: miner, tool
+pickup: truck, car, farm
+picnic: basket, sandwich, blanket, ant
+picture: photo, frame, art, camera
+pie: cake, slice, apple, pumpkin
+pigeon: bird, dove, wing
+piglet: pig, baby, farm
+pilgrim: hat, ship, turkey, boat
+pillow: bed, sleep, soft
+pilot: plane, hat, fly, captain
+pioneer: wagon, hat, tent, horse
+platypu: animal, duck, australia
+play: ball, game, toy, theatre
+playground: swing, slide, ball, park
+playing: ball, game, toy
+playlist: music, note, headphone, list
+please: hand, heart, smile
+plu: add, math, cross
+plum: fruit, purple, tree
+plumber: wrench, pipe, tool
+pocket: coat, jacket, hand
+poem: book, pen, rhyme, paper
+poetry: book, pen, rhyme, paper
+poker: card, chip, game
+polar: bear, ice, snow, arctic
+policeman: police, officer, badge
+policy: book, paper, scroll
+polite: hand, smile, heart
+pollution: smoke, factory, trash
+pond: duck, frog, water, lily
+ponytail: hair, girl, ribbon
+pool: swim, water, wave
+poor: coin, sad, hungry
+pop: music, note, balloon, microphone
+popcorn: movie, corn, cinema
+postal: mail, post, letter, envelope
+postman: mail, letter, post, envelope
+potato: fry, vegetable, chip
+potty: toilet, baby, bathroom
+powerful: hero, lightning
+praise: hand, church, music, star
+prank: joke, cheeky, laugh, clown
+pray: hand, church, cross
+prayer: pray, church, hand, cross
+praying: pray, hand, church
+preacher: church, cross, book
+prehistoric: dinosaur, mammoth, bone, cave
+preschool: school, abc, crayon, block
+president: flag, hat, building, america
+pretend: mask, costume, theatre
+pretzel: bread, snack
+price: money, coin, tag
+pride: lion, crown, peacock, flag
+priest: church, cross, book
+prison: lock, key, police, jail
+prisoner: lock, key, chain
+prize: trophy, medal, gift
+problem: question, brain, puzzle, gear
+promise: heart, hand, finger, star
+prophecy: scroll, book, star, crystal
+prophet: scroll, book, star, cloud
+proud: lion, medal, star, flag
+proverb: book, scroll, owl
+psalm: harp, book, note, church
+pudding: cake, dessert, cherry
+puddle: rain, boot, water, mud
+puppet: toy, hand, sock, theatre
+pure: angel, white, heart, snow
+purity: angel, white, heart, snow
+purse: bag, money
+pursuit: run, chase, magnifying, race
+puzzle: piece, jigsaw, brain, game
+pyjama: pajama, bed, night, sleep
+pyramid: egypt, sand, desert
+quack: duck, pond, bird
+quest: map, sword, treasure, knight
+quiet: library
+quiz: question, test, brain
+raccoon: animal, mask, forest
+race: car, flag, runner, trophy
+racecar: car, race, flag
+racing: car, flag, race
+raft: boat, river, wood
+railroad: train, station
+railway: train, station
+raining: rain, umbrella, cloud
+rainy: rain, umbrella, cloud
+ram: sheep, horn, farm
+ramadan: moon, crescent, mosque, star
+raptor: dinosaur, bird, eagle
+rapunzel: hair, tower, princess
+rat: mouse, cheese, tail
+raven: bird, black, crow
+read: book, library, glass
+rebel: flag, fist, fire
+rebellion: flag, fist, fire
+recipe: book, cook, chef, spoon
+recording: microphone, record, audio, tape
+recycle: bin, earth, leaf
+recycling: recycle, bin, earth, leaf
+reef: coral, fish, sea
+regret: sad, cry, face
+rehearsal: theatre, stage, music
+repair: hammer, wrench, tool, gear
+repeat: arrow, circle, refresh
+reptile: lizard, snake, crocodile
+rescue: helicopter, ambulance, rope
+resolution: clock, calendar, list
+respect: hand, heart, hat
+responsibility: hand, key, badge
+resurrection: cross, tomb, sun, flower
+reverend: church, cross, book
+rhino: horn, africa, grey
+rhinocero: rhino, horn, africa
+rhyme: book, nursery, mother
+rhythm: drum, music, beat, note
+ribbon: bow, gift, hair
+rice: bowl, sushi, grain
+rich: money, coin, gold, crown
+riddle: question, brain, puzzle
+rival: fight, sword, glove, race
+river: water, boat, bridge, fish
+robber: mask, thief, bag, police
+roman: helmet, sword, shield
+roof: house, chimney
+room: bed, door, house, window
+rooster: chicken, farm, morning, bird
+rope: climb, string, skip, jump
+rose: flower, red, valentine
+royal: crown, king, queen, castle
+rubbish: bin, trash, garbage
+ruby: gem, red, diamond
+rude: angry, tongue, face
+rugby: football, ball, helmet
+run: runner, shoe, race, sneaker
+runner: shoe, race, sneaker
+running: runner, shoe, race, sneaker
+ruth: wheat, field, heart
+sadness: cry, tear, rain, face
+safari: lion, giraffe, zebra, elephant
+safe: lock, key, shield, helmet
+safety: shield, helmet, sign
+sail: boat, ship, anchor
+sailboat: boat, sail, sea
+sailor: ship, anchor, boat, sail
+salad: vegetable, bowl, tomato
+salamander: lizard, frog
+salmon: fish, river, sea
+salt: shaker, pepper, kitchen
+samson: lion, hair, strong
+sand: beach, desert, castle
+sandal: shoe, foot, summer
+sandbox: sand, bucket, spade
+sandcastle: sand, castle, bucket
+sandwich: bread, cheese, lunch, ham
+saturday: calendar, day, week
+saucer: ufo, alien, cup
+sausage: meat, hotdog
+savior: cross, church, heart
+saviour: cross, church, heart
+saw: tool, wood, builder
+scared: ghost, scream, fear, skull
+scarf: winter, snowman, clothe
+scary: ghost, skull, monster, spooky
+schoolbu: bus, school, yellow
+science: lab, microscope, atom
+scientist: lab, microscope, atom
+scooter: bike, wheel, kick
+score: ball, goal, trophy
+scorpion: desert, insect
+scotland: flag, castle
+screw: tool
+script: book, paper, pen, theatre
+scripture: book, cross, scroll, church
+sculptor: art, statue, hammer
+seagull: bird, sea, beach
+seahorse: fish, sea, ocean
+seal: ocean, fish, animal
+search: magnifying, glass, find, detective
+see: eye, look, glass
+seed: plant, sprout, flower, seedling
+seeing: eye, look, glass
+seek: eye, magnifying, glass
+seesaw: playground, park
+selfish: pig, money, coin
+sell: shop, money, sign, store
+send: envelope, letter, mail
+september: calendar, school, autumn
+sergeant: army, medal, soldier
+serpent: snake, reptile
+servant: tray, butler, hat
+sew: needle, thread, button
+shadow: black, silhouette, sun
+shame: blush, face, hide
+shampoo: bottle, hair, bath, bubble
+shamrock: clover, green, irish, leaf
+shape: circle, square, triangle, block
+share: hand, gift, heart
+sharing: hand, gift, heart, cookie
+shepherd: sheep, staff, lamb, hill
+sheriff: star, hat, badge, cowboy
+shield: knight, sword, armor
+shop: store, basket, cart, bag
+shopping: basket, cart, bag, shop
+shout: mouth, voice, megaphone, speaker
+show: theatre, tv, curtain, stage
+shower: water, soap, bath
+showman: circu, hat, theatre
+shrimp: sea, crab
+shy: blush, face, hide
+sick: thermometer, hospital, bed, doctor
+siege: castle, tower, sword, knight
+silence: quiet, library
+silent: library, night, moon, star, snow
+sin: devil, apple, snake
+singer: microphone, note, music
+singing: microphone, note, music, mouth
+siren: police, ambulance, emergency, light
+skate: ice, wheel, board
+skateboard: wheel, board, skate
+skating: ice, wheel, board
+ski: snow, mountain, winter
+skiing: snow, mountain, winter
+skin: hand, body, human
+skipping: rope, jump, girl
+skirt: dress, girl, clothe
+skunk: animal, stripe, smell
+sled: snow, winter, sleigh
+sledding: sled, snow, winter
+sleepy: sleep, bed, moon, yawn
+sleigh: santa, snow, reindeer, christma
+slide: playground, park
+slipper: shoe, bed, foot
+sloth: tree, animal, slow
+slow: snail, turtle, sloth
+slug: snail, slime, garden
+smart: brain, book, owl, glass
+smell: nose, flower
+smoke: fire, chimney, cloud
+snack: cookie, apple, cracker, popcorn
+sneeze: nose, sick
+snowball: snow, snowman, winter
+snowboard: snow, board, mountain
+snowing: snow, snowflake, winter, cloud
+snowwhite: apple, princess, dwarf
+snowy: snow, winter, snowflake, cold
+soap: bath, bubble, hand, wash
+soccer: football, ball, goal
+sock: foot, shoe, clothe
+soda: bottle, drink
+softball: ball, bat, glove
+solar: sun, planet, space
+soldier: army, hat, tank, flag
+solomon: crown, king, throne, temple
+solution: bulb, key, puzzle
+solve: bulb, key, puzzle, brain
+sometime: clock, question
+son: boy, child, family
+soothing: moon, heart, wave, cloud
+sorry: sad, heart, cry, card
+soup: bowl, spoon, pot, noodle
+spacecraft: rocket, space, ufo
+spaceship: rocket, ufo, space, alien
+spaghetti: pasta, noodle, italian, bowl
+spanish: spain, flag
+sparkle: star, diamond, shine
+sparrow: bird, wing, nest
+spectacle: glasse, eye, read
+speech: microphone, talk, bubble, voice
+speed: car, race, fast, rocket
+spell: wand, witch, book, potion
+spelling: abc, alphabet, letter, book
+spooky: ghost, skull, bat, pumpkin
+sprite: fairy, magic, wing
+squid: octopu, sea, ocean
+squirrel: nut, acorn, tree, tail
+stable: horse, barn, farm
+stag: deer, antler, forest
+stage: theatre, microphone, curtain
+stair: house, ladder, step
+stallion: horse, pony, farm
+starfish: star, sea, ocean, beach
+starry: star, night, moon, sky
+steak: meat, cow
+steamboat: boat, ship, river
+stew: bowl, pot, soup, spoon
+stocking: christma, sock, gift, santa
+stop: sign, hand, traffic
+store: shop, basket, cart
+stork: bird, baby
+storybook: book, story, tale
+storyland: book, castle, story, tale
+storytime: book, story, tale
+stranger: person, question, hat
+stream: water, river, fish
+strong: arm, weight
+student: school, book, backpack, pencil
+stupid: clown, silly, brain
+submarine: ship, ocean, fish
+subtraction: minu, number, math
+subway: train, station, city
+suitcase: bag, travel, luggage
+summer: sun, beach, ice
+sundae: icecream, cherry, cone
+sunday: calendar, church, sun, day
+sunflower: flower, sun, yellow
+sunny: sun, sunshine, yellow
+sunrise: sun, morning, sky, dawn
+sunshine: sun, sunny, smile, yellow
+supper: plate, fork, bowl, spoon
+surf: wave, board, beach
+surfing: wave, board, beach
+surprise: gift, present, party, balloon
+surprising: surprise, gift, star
+swan: bird, lake, white, feather
+sweater: winter, clothe
+swim: fish, pool, water, wave
+swimming: fish, pool, water, wave
+swing: playground, park, tree
+synagogue: star, menorah, building
+syrup: pancake, honey, maple, waffle
+tadpole: frog, pond, water
+tail: dog, cat, fox
+talk: speech, bubble, microphone
+talking: speech, bubble, microphone
+target: arrow
+taste: tongue, mouth, food
+taxi: cab, car, yellow
+teach: teacher, school, book
+teacher: school, book, pencil, blackboard
+team: people, football, flag, whistle
+teamwork: people, team, hand
+teapot: tea, cup, kettle
+technology: computer, robot, gear
+telephone: phone, call, ring
+telescope: star, space
+television: tv, screen
+temple: building, church
+temptation: snake, apple, devil
+tenni: ball, net
+test: paper, pencil, school
+testament: book, cross, scroll
+testimony: book, hand, scale, church
+text: phone, message, envelope
+thank: heart, hand, turkey, card, gift
+thankful: heart, thank, hand, turkey
+thanksgiving: turkey, pumpkin, harvest, pilgrim
+theater: theatre, mask, curtain, stage
+theatre: mask, curtain, stage
+thief: mask, robber, bag, police
+thinking: brain, bulb, thought, question
+thirsty: water, glass, cup, drop
+thought: brain, bulb, cloud
+thread: needle, sew, spool
+throne: crown, king, queen, chair
+thug: mask, fist, police
+thumb: hand, finger, up
+thunder: lightning, storm, cloud
+thunderstorm: lightning, storm, cloud, rain
+thursday: calendar, day, week
+tiara: crown, princess, royal
+tidy: broom, bucket, clean
+tired: sleep, yawn, bed
+toast: bread, butter, breakfast
+today: calendar, clock, sun
+toddler: baby, child, boy
+toe: foot, feet, sock
+toilet: potty, bathroom, paper
+tomato: vegetable, red, salad
+tomb: grave, stone, cross
+tomorrow: calendar, clock, sun
+tool: hammer, wrench, saw
+toolbox: tool, hammer, wrench
+tooth: teeth, dentist, toothbrush
+torch: light, fire, flame
+tornado: storm, cloud, wind
+tortoise: turtle, shell, slow
+toucan: bird, parrot, tropical
+tournament: trophy, medal, cup, flag
+towel: bath, beach, shower
+tower: castle, tall, rapunzel, building
+town: house, building, church, road
+traffic: car, road, light, sign
+tragedy: mask, cry, theatre
+tram: train, bus, road
+trampoline: jump, bounce, playground
+transport: car, bus, train, plane
+transportation: car, bus, train, plane
+trash: bin, garbage
+travel: suitcase, plane, map
+treasurehunt: treasure, map, chest
+treat: candy, lollipop, sweet, cookie
+trex: dinosaur, rex, dino
+triangle: shape, pyramid, block
+triceratop: dinosaur, horn, dino
+trick: magic, hat, rabbit, clown
+trip: suitcase, bus, map, backpack
+trivia: question, quiz, brain, bulb
+trivial: question, small, brain
+trouble: warning, sign, devil
+trouser: pant, clothe, jean
+trout: fish, river, rod
+trumpet: horn, music, instrument
+trust: hand, heart, handshake
+truth: scale, book, key, eye
+tshirt: shirt, clothe
+tuesday: calendar, day, week
+tugboat: boat, ship, water
+tulip: flower, spring, plant
+tuna: fish, sea, can
+tune: note, music
+tunnel: train, mole, cave
+turkey: bird, thanksgiving, feather
+tusk: elephant, walru
+tv: television, screen
+twin: boy, girl, child, double
+twinkle: star, sparkle, night
+tyrannosauru: dinosaur, rex, dino
+tyre: wheel, car, rubber
+ufo: alien, space, saucer
+ukulele: guitar, music, instrument, string
+uncle: man, family
+underwater: fish, ocean, submarine, coral
+unexpected: surprise, gift, question, star
+unfair: scale, thumb, angry
+unhappy: sad, cry, frown, face
+universe: star, space, planet, galaxy
+upset: sad, cry, angry, face
+usa: flag, america, star, eagle
+vacation: beach, suitcase, sun, palm
+valentine: heart, rose, card
+vampire: bat, fang, castle, cape
+vegetable: carrot, broccoli, tomato, salad
+veggie: carrot, broccoli, tomato, salad
+vet: animal, doctor, cat, dog
+veterinarian: animal, doctor, cat, dog
+victory: trophy, medal, flag
+video: camera, film, play, tv
+viking: ship, helmet, sword, shield
+village: house, church, tree, road
+villain: mask, devil, skull, witch
+violin: music, instrument, bow, string
+visit: door, house, car, bell
+visitor: person, door, bell, hotel
+vocabulary: book, word, abc
+voice: microphone, speech, sing, mouth
+volleyball: ball, net, beach
+vote: box, hand, paper
+voyage: ship, boat, sail, compass
+waffle: syrup, breakfast, butter
+wagon: cart, horse, wheel
+wait: clock, hourglass, watch
+waiting: clock, hourglass, watch
+wake: sun, clock, rooster, morning
+waking: sun, clock, rooster, morning
+wall: brick, house, castle
+wallet: money, purse, coin
+walru: ocean, ice
+warm: sun, fire, blanket, cup
+warning: sign, danger, siren
+wash: soap, bath, hand, water
+washing: soap, bath, hand, water
+wasp: bee, insect
+watch: clock, eye
+watching: eye, tv, look
+waterfall: water, river, rainbow
+weapon: sword, shield, arrow
+web: spider, net
+website: computer, world, globe
+wedding: ring, cake, bride, heart
+wednesday: calendar, day, week
+week: calendar, date, day
+weekend: calendar, sun, beach, party
+welcome: door, mat, house, hand
+welcoming: door, mat, house, hand
+werewolf: wolf, moon, monster
+western: cowboy, hat, horse, boot
+whirlpool: water, sea, wave
+whisper: mouth, voice, quiet, secret
+whistle: music, mouth, sound
+wife: woman, ring, family, heart
+wig: hair, clown, costume
+wildlife: animal, forest, paw, nature
+win: trophy, medal, champion
+window: house, glass, curtain
+windy: cloud, kite, leaf, wave
+winner: trophy, medal, champion, crown
+winning: trophy, medal, champion
+wisdom: owl, book, brain, glass
+wise: owl, book, brain, glass
+wiseman: star, crown, camel, gift
+wish: star, genie, candle, bottle
+wishe: star, genie, candle, bottle
+witness: eye, magnifying, book
+wolve: wolf, moon, forest
+wombat: animal, australia, bear
+women: woman, lady, girl
+wonder: question, star, sparkle
+wonderful: star, sparkle, rainbow
+wondering: question, star, sparkle
+woodcutter: axe, tree, wood
+woodland: tree, forest, fox, owl
+woodpecker: bird, tree
+wool: sheep, yarn
+work: briefcase, hammer, office
+worker: helmet, hammer, builder
+workout: weight
+worm: caterpillar, apple, earth
+worried: sad, face, scared, question
+worship: church, hand, cross, music
+wreath: christma, holly, door, leaf
+wrench: tool
+writer: book, pen, write, pencil
+writing: pen, pencil, write, paper
+xma: christma, santa, tree
+yacht: boat, sail, ocean
+yarn: wool, cat, ball
+yawn: sleep, tired, mouth, moon
+yesterday: calendar, clock
+yoga: mat, peace
+yule: christma, log, snow
+zebra: stripe, africa, zoo
+zombie: skull, ghost, monster, grave

@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Avalonia desktop shell (macOS + Windows). Views, view models and composition root only. -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>OpenMyo</AssemblyName>
+    <RootNamespace>OpenMyo.App</RootNamespace>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- Windows .exe icon; generated from the shared logo in OpenMyo.Mcp/Assets. -->
+    <ApplicationIcon>Assets\openmyo.ico</ApplicationIcon>
+    <BuiltInComInteropSupport>false</BuiltInComInteropSupport>
+    <!-- Required only by the LibraryImport source generator (MacDockIcon); hand-written code stays safe. -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' != ''">
+    <!-- `dotnet publish -r <rid>` gives one executable that runs without .NET installed. -->
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <DebugType>none</DebugType>
+    <!-- Leaves the other projects' .pdb files out of the published folder. -->
+    <AllowedReferenceRelatedFileExtensions>none</AllowedReferenceRelatedFileExtensions>
+    <PublishDocumentationFiles>false</PublishDocumentationFiles>
+    <PublishReferencesDocumentationFiles>false</PublishReferencesDocumentationFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenMyo.Core\OpenMyo.Core.csproj" />
+    <ProjectReference Include="..\OpenMyo.Yoto\OpenMyo.Yoto.csproj" />
+    <ProjectReference Include="..\OpenMyo.Claude\OpenMyo.Claude.csproj" />
+    <ProjectReference Include="..\OpenMyo.Infrastructure\OpenMyo.Infrastructure.csproj" />
+    <ProjectReference Include="..\OpenMyo.Mcp\OpenMyo.Mcp.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Window and taskbar icon: the same logo the Claude Desktop connector sends. -->
+    <AvaloniaResource Include="..\OpenMyo.Mcp\Assets\openmyo-icon.png" Link="Assets\openmyo-icon.png" />
+    <!-- macOS Dock copy of the logo, padded to Apple's icon grid (412px body on a 512px canvas). -->
+    <AvaloniaResource Include="Assets\openmyo-dock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- The snapshot tool renders real views with the real composition root. -->
+    <InternalsVisibleTo Include="OpenMyo.Snapshots" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="Avalonia.Diagnostics" Condition="'$(Configuration)' == 'Debug'" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
+    <PackageReference Include="Microsoft.Extensions.Logging" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
+  </ItemGroup>
+  <!-- Native LibVLC for track playback, copied into libvlc/<rid>/ beside the executable. Only the target OS's
+       package is referenced (each is 150-300 MB unpacked); `-r <rid>` narrows it to one architecture. -->
+  <PropertyGroup>
+    <_OpenMyoTargetsMac Condition="$(RuntimeIdentifier.StartsWith('osx')) Or ('$(RuntimeIdentifier)' == '' And $([MSBuild]::IsOSPlatform('OSX')))">true</_OpenMyoTargetsMac>
+    <_OpenMyoTargetsWindows Condition="$(RuntimeIdentifier.StartsWith('win')) Or ('$(RuntimeIdentifier)' == '' And $([MSBuild]::IsOSPlatform('Windows')))">true</_OpenMyoTargetsWindows>
+    <!-- .NET 10 has no 32-bit Windows desktop target we ship, so skip VLC's x86 build. -->
+    <VlcWindowsX86Enabled>false</VlcWindowsX86Enabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="VideoLAN.LibVLC.Mac" Condition="'$(_OpenMyoTargetsMac)' == 'true'" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Condition="'$(_OpenMyoTargetsWindows)' == 'true'" />
+  </ItemGroup>
+</Project>

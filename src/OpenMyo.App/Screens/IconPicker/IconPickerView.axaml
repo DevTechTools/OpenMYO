@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:settings="using:OpenMyo.App.Screens.Settings"
+             xmlns:controls="using:OpenMyo.App.Controls"
+             xmlns:vm="using:OpenMyo.App.Screens.IconPicker"
+             x:Class="OpenMyo.App.Screens.IconPicker.IconPickerView"
+             x:DataType="vm:IconPickerViewModel">
+  <Border Background="{DynamicResource ListPaneBrush}" BorderBrush="{DynamicResource SeparatorBrush}" BorderThickness="1,0,0,0">
+    <DockPanel Margin="12">
+      <StackPanel DockPanel.Dock="Top" Spacing="8">
+        <TextBlock Classes="headline" Text="Icon" />
+        <TextBlock Classes="secondary" TextWrapping="Wrap" IsVisible="{Binding HasTarget}"
+                   Text="{Binding Target.Title, StringFormat='For “{0}”'}" TextTrimming="CharacterEllipsis" />
+        <TextBox x:Name="SearchBox" Watermark="Search icons" Text="{Binding Query}" IsEnabled="{Binding HasTarget}" />
+        <!-- Runs only on click to keep token use low. -->
+        <Button IsVisible="{Binding HasTarget}" Command="{Binding SearchWithAiCommand}"
+                HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                ToolTip.Tip="Ask Claude for picture ideas for this title">
+          <StackPanel Orientation="Horizontal" Spacing="6">
+            <PathIcon Data="{StaticResource IconSparkle}" Width="14" Height="14" />
+            <TextBlock Text="Search with AI" />
+          </StackPanel>
+        </Button>
+        <Border Classes="card" IsVisible="{Binding IsAskingForKey}">
+          <StackPanel Spacing="8">
+            <TextBlock TextWrapping="Wrap" Text="Paste an Anthropic API key to search with AI. It's saved in your system keychain. The search runs as soon as the key is saved." />
+            <settings:AiKeyView DataContext="{Binding AiKey}" />
+          </StackPanel>
+        </Border>
+        <ProgressBar IsIndeterminate="True" IsVisible="{Binding IsAiSearching}" />
+        <TextBlock Classes="secondary" TextWrapping="Wrap" Text="{Binding AiKeywords}"
+                   IsVisible="{Binding AiKeywords, Converter={x:Static ObjectConverters.IsNotNull}}" />
+      </StackPanel>
+
+      <Panel Margin="0,10,0,0">
+        <TextBlock Classes="secondary" TextWrapping="Wrap" IsVisible="{Binding !HasTarget}"
+                   Text="Select a track to choose its icon." />
+        <ScrollViewer IsVisible="{Binding HasTarget}">
+          <StackPanel Spacing="8">
+            <ItemsControl ItemsSource="{Binding Results}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="vm:IconTileViewModel">
+                  <Button Classes="iconTile" Command="{Binding ChooseCommand}"
+                          ToolTip.Tip="{Binding Name}" AutomationProperties.Name="{Binding Name}">
+                    <controls:PixelImage Source="{Binding Image}" Width="32" Height="32" />
+                  </Button>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <vm:CommunityResultsView DataContext="{Binding Community}" />
+          </StackPanel>
+        </ScrollViewer>
+      </Panel>
+    </DockPanel>
+  </Border>
+</UserControl>

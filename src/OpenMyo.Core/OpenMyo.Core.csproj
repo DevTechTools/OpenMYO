@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Pure domain logic: no UI, no HTTP, no platform APIs. -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Title word → related icon words, read by WordSynonyms. -->
+    <EmbeddedResource Include="Text/Synonyms.txt" LogicalName="OpenMyo.Core.Text.Synonyms.txt" />
+    <!-- Filler title words that count less when matching, read by WeakWords. -->
+    <EmbeddedResource Include="Text/WeakWords.txt" LogicalName="OpenMyo.Core.Text.WeakWords.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="OpenMyo.Core.Tests" />
+  </ItemGroup>
+</Project>

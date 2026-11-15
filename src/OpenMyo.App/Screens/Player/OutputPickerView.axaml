@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OpenMyo.App.Screens.Player"
+             x:Class="OpenMyo.App.Screens.Player.OutputPickerView"
+             x:DataType="vm:OutputPickerViewModel">
+  <!-- Opening the menu refreshes the player list, so online/offline is current. The button turns accent while a
+       Yoto player is chosen and names it, so it is always clear where audio will play. -->
+  <Button Classes="subtle output" Classes.remote="{Binding IsRemote}" Command="{Binding RefreshCommand}"
+          ToolTip.Tip="{Binding ButtonLabel}" AutomationProperties.Name="{Binding ButtonLabel}">
+    <StackPanel Orientation="Horizontal" Spacing="6">
+      <PathIcon Data="{StaticResource IconOutput}" />
+      <TextBlock Text="{Binding OutputName}" VerticalAlignment="Center" IsVisible="{Binding IsRemote}" MaxWidth="160"
+                 TextTrimming="CharacterEllipsis" />
+    </StackPanel>
+    <Button.Flyout>
+      <MenuFlyout Placement="TopEdgeAlignedRight" ItemsSource="{Binding Options}">
+        <MenuFlyout.ItemContainerTheme>
+          <ControlTheme TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}" x:DataType="vm:OutputOptionViewModel">
+            <Setter Property="Header" Value="{Binding Label}" />
+            <Setter Property="ToggleType" Value="Radio" />
+            <Setter Property="IsChecked" Value="{Binding IsSelected, Mode=OneWay}" />
+            <Setter Property="IsEnabled" Value="{Binding IsAvailable}" />
+            <Setter Property="Command" Value="{Binding ChooseCommand}" />
+            <Setter Property="AutomationProperties.Name" Value="{Binding AccessibleName}" />
+          </ControlTheme>
+        </MenuFlyout.ItemContainerTheme>
+      </MenuFlyout>
+    </Button.Flyout>
+  </Button>
+</UserControl>

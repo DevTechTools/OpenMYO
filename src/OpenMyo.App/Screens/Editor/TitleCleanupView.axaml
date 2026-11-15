@@ -1,0 +1,52 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OpenMyo.App.Screens.Editor"
+             x:Class="OpenMyo.App.Screens.Editor.TitleCleanupView"
+             x:DataType="vm:TitleCleanupViewModel">
+  <!-- Inline, not a dialog: switch rules on and off and watch the preview update. -->
+  <Border Classes="selectionBar">
+    <StackPanel Spacing="12">
+      <Grid ColumnDefinitions="*,Auto">
+        <StackPanel VerticalAlignment="Center" Spacing="2" Margin="0,0,12,0">
+          <TextBlock Classes="headline" Text="Tidy titles" />
+          <TextBlock Classes="secondary" TextWrapping="Wrap" Text="{Binding ScopeText, StringFormat='Applies to {0}. Nothing is saved until you press Save.'}" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+          <Button Content="Cancel" Command="{Binding CloseCommand}" />
+          <Button Classes="accent" Content="{Binding ApplyText}" Command="{Binding ApplyCommand}" />
+        </StackPanel>
+      </Grid>
+
+      <WrapPanel ItemSpacing="6" LineSpacing="6">
+        <ToggleButton Classes="chip" IsChecked="{Binding FixSeparators}" Content="Underscores &amp; web addresses" />
+        <ToggleButton Classes="chip" IsChecked="{Binding RemoveNumbering}" Content="Track numbers" />
+        <ToggleButton Classes="chip" IsChecked="{Binding RemoveBracketedText}" Content="[Bracketed] text" />
+        <ToggleButton Classes="chip" IsChecked="{Binding RemoveNoise}" Content="(Official Audio) and similar" />
+        <ToggleButton Classes="chip" IsChecked="{Binding RemoveSharedPrefix}" Content="Repeated “Artist - ” prefix" />
+        <ToggleButton Classes="chip" IsChecked="{Binding FixCapitals}" Content="ALL CAPS → Title Case" />
+      </WrapPanel>
+
+      <Grid ColumnDefinitions="*,24,*">
+        <TextBox Watermark="Find" Text="{Binding Find}" />
+        <TextBlock Grid.Column="1" Classes="secondary" HorizontalAlignment="Center" VerticalAlignment="Center" Text="→" />
+        <TextBox Grid.Column="2" Watermark="Replace with (blank removes it)" Text="{Binding Replace}" />
+      </Grid>
+
+      <TextBlock Classes="secondary" IsVisible="{Binding !ChangeCount}" Text="No titles would change with these rules." />
+      <!-- Preview: each change on one line, old title muted, new title in full colour. -->
+      <ScrollViewer MaxHeight="168" IsVisible="{Binding !!ChangeCount}">
+        <ItemsControl ItemsSource="{Binding Preview}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="vm:TitleChange">
+              <Grid ColumnDefinitions="*,24,*" Height="24">
+                <TextBlock Classes="secondary" VerticalAlignment="Center" Text="{Binding Before}" TextTrimming="CharacterEllipsis" />
+                <TextBlock Grid.Column="1" Classes="secondary" HorizontalAlignment="Center" VerticalAlignment="Center" Text="→" />
+                <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding After}" TextTrimming="CharacterEllipsis" />
+              </Grid>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </ScrollViewer>
+    </StackPanel>
+  </Border>
+</UserControl>

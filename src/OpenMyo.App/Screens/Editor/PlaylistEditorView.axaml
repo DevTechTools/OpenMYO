@@ -1,0 +1,203 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:text="using:OpenMyo.Core.Text"
+             xmlns:controls="using:OpenMyo.App.Controls"
+             xmlns:vm="using:OpenMyo.App.Screens.Editor"
+             xmlns:icons="using:OpenMyo.App.Screens.IconPicker"
+             xmlns:conv="using:OpenMyo.App.Converters"
+             x:Class="OpenMyo.App.Screens.Editor.PlaylistEditorView"
+             x:DataType="vm:PlaylistEditorViewModel">
+  <UserControl.KeyBindings>
+    <KeyBinding Gesture="Escape" Command="{Binding ClosePickerCommand}" />
+  </UserControl.KeyBindings>
+  <Panel>
+    <TextBlock Classes="secondary" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"
+               IsVisible="{Binding !HasPlaylist}" Text="Select a playlist, or several to act on them together." />
+
+    <Grid ColumnDefinitions="*,Auto" IsVisible="{Binding HasPlaylist}">
+      <DockPanel Margin="20,40,20,12">
+        <!-- Header: cover, title, primary actions -->
+        <Grid DockPanel.Dock="Top" ColumnDefinitions="Auto,*,Auto">
+          <Button Padding="0" Background="Transparent" Command="{Binding ChangeCoverCommand}"
+                  ToolTip.Tip="Change cover image" AutomationProperties.Name="Change cover image">
+            <Border Classes="artwork" Width="84" Height="84">
+              <Image Source="{Binding Cover}" Stretch="UniformToFill" />
+            </Border>
+          </Button>
+          <StackPanel Grid.Column="1" Margin="14,0" VerticalAlignment="Center" Spacing="4">
+            <TextBox Classes="inline largeTitle" Text="{Binding Title}" MaxLength="{x:Static text:TitleCleaner.MaxTitleLength}" />
+            <TextBlock Classes="secondary" Margin="6,0" Text="{Binding Row.Subtitle}" IsVisible="{Binding !IsDraft}" />
+            <TextBlock Classes="secondary" Margin="6,0" IsVisible="{Binding IsDraft}"
+                       Text="New playlist · created on Yoto when you save or add tracks" />
+          </StackPanel>
+          <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+            <Button Content="Revert" Command="{Binding RevertCommand}" />
+            <Button Classes="accent" Content="Save" Command="{Binding SaveCommand}" ToolTip.Tip="Ctrl/Cmd+S" />
+          </StackPanel>
+        </Grid>
+
+        <!-- Toolbar: the everyday action, plus a ⋯ menu for rare whole-playlist edits. -->
+        <Grid DockPanel.Dock="Top" ColumnDefinitions="Auto,*,Auto" Margin="0,16,0,8">
+          <Button Command="{Binding AddTracksCommand}">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <PathIcon Data="{StaticResource IconAdd}" Width="14" Height="14" />
+              <TextBlock Text="Add Tracks…" />
+            </StackPanel>
+          </Button>
+          <!-- Quiet hints: only what applies to this playlist, each one click. -->
+          <WrapPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center" ItemSpacing="6" LineSpacing="6">
+            <StackPanel Orientation="Horizontal" Spacing="1" IsVisible="{Binding Suggestions.ShowMissingIcons}">
+              <Button Classes="hint segmentStart" Command="{Binding Icons.MatchMissingIconsCommand}"
+                      ToolTip.Tip="Match icons to titles (free)">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                  <PathIcon Data="{StaticResource IconPicture}" />
+                  <TextBlock Text="{Binding Suggestions.MissingIconsText}" />
+                </StackPanel>
+              </Button>
+              <Button Classes="hint segmentEnd" Command="{Binding Icons.MatchMissingIconsWithAiCommand}"
+                      ToolTip.Tip="Match with AI: asks Claude about titles the free matcher is unsure of"
+                      AutomationProperties.Name="Match missing icons with AI">
+                <PathIcon Data="{StaticResource IconSparkle}" />
+              </Button>
+            </StackPanel>
+            <Button Classes="hint" IsVisible="{Binding Suggestions.ShowTidy}" Command="{Binding Cleanup.OpenCommand}"
+                    ToolTip.Tip="{Binding Suggestions.TidyExample}">
+              <StackPanel Orientation="Horizontal" Spacing="6">
+                <PathIcon Data="{StaticResource IconTitles}" />
+                <TextBlock Text="{Binding Suggestions.TidyText}" />
+              </StackPanel>
+            </Button>
+            <Button Classes="hint" IsVisible="{Binding Suggestions.ShowOrder}" Command="{Binding Batch.SortByNumberCommand}"
+                    ToolTip.Tip="Tracks are numbered but out of order">
+              <StackPanel Orientation="Horizontal" Spacing="6">
+                <PathIcon Data="{StaticResource IconSort}" />
+                <TextBlock Text="Sort by number" />
+              </StackPanel>
+            </Button>
+          </WrapPanel>
+          <Button Grid.Column="2" Classes="subtle" ToolTip.Tip="More actions" AutomationProperties.Name="More actions">
+            <PathIcon Data="{StaticResource IconMore}" />
+            <Button.Flyout>
+              <MenuFlyout Placement="BottomEdgeAlignedRight">
+                <MenuItem Header="Re-pick Every Icon" Command="{Binding Icons.RematchAllIconsCommand}" />
+                <MenuItem Header="Re-pick Every Icon with AI" Command="{Binding Icons.RematchAllIconsWithAiCommand}"
+                          ToolTip.Tip="Asks Claude about titles the free matcher is unsure of">
+                  <MenuItem.Icon>
+                    <PathIcon Data="{StaticResource IconSparkle}" />
+                  </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Rename Every Title with AI" Command="{Binding Titles.RenameAllTitlesWithAiCommand}"
+                          ToolTip.Tip="Asks Claude for a clean title for every track; review, then Save">
+                  <MenuItem.Icon>
+                    <PathIcon Data="{StaticResource IconSparkle}" />
+                  </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Number Every Icon (1, 2, 3…)" Command="{Binding Icons.NumberIconsCommand}" />
+                <MenuItem Header="Clear Every Icon" Command="{Binding Batch.ClearAllIconsCommand}" />
+                <Separator />
+                <MenuItem Header="Tidy Titles…" Command="{Binding Cleanup.OpenCommand}" />
+                <MenuItem Header="Sort by Number" Command="{Binding Batch.SortByNumberCommand}" />
+                <MenuItem Header="Sort by Title" Command="{Binding Batch.SortByTitleCommand}" />
+                <MenuItem Header="Reverse Order" Command="{Binding Batch.ReverseOrderCommand}" />
+              </MenuFlyout>
+            </Button.Flyout>
+          </Button>
+        </Grid>
+
+        <Border DockPanel.Dock="Top" Classes="selectionBar" Margin="0,0,0,8" IsVisible="{Binding Suggestions.HasNotice}">
+          <Grid ColumnDefinitions="*,Auto">
+            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding Suggestions.Notice}" />
+            <Button Grid.Column="1" Classes="subtle" Command="{Binding Suggestions.DismissNoticeCommand}" AutomationProperties.Name="Dismiss" ToolTip.Tip="Dismiss">
+              <PathIcon Data="{StaticResource IconRemove}" Width="12" Height="12" />
+            </Button>
+          </Grid>
+        </Border>
+
+        <vm:TitleCleanupView DockPanel.Dock="Top" Margin="0,0,0,8" DataContext="{Binding Cleanup}" IsVisible="{Binding IsOpen}" />
+
+        <!-- Several tracks selected: the picker assigns to all of them; these act on them too. -->
+        <Border DockPanel.Dock="Top" Classes="selectionBar" Margin="0,0,0,8" IsVisible="{Binding Selection.HasMany}">
+          <Grid ColumnDefinitions="*,Auto">
+            <TextBlock VerticalAlignment="Center"
+                       Text="{Binding Selection.Count, StringFormat='{}{0} tracks selected · choose an icon on the right to give them all the same one'}" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+              <Button Content="Number Icons" Command="{Binding Icons.NumberIconsCommand}" ToolTip.Tip="Show each track's position as its icon" />
+              <Button Content="Clear Icons" Command="{Binding Batch.ClearSelectedIconsCommand}" />
+              <Button Classes="danger" Content="Remove" Command="{Binding Batch.RemoveSelectedCommand}" />
+            </StackPanel>
+          </Grid>
+        </Border>
+
+        <StackPanel DockPanel.Dock="Top" Spacing="6" IsVisible="{Binding IsBusy}">
+          <Grid ColumnDefinitions="*,Auto">
+            <TextBlock Classes="secondary" Text="{Binding Status}" VerticalAlignment="Center" />
+            <Button Grid.Column="1" Classes="subtle" Content="Cancel" Command="{Binding CancelCommand}" />
+          </Grid>
+          <ProgressBar Value="{Binding Progress}" Maximum="1" />
+        </StackPanel>
+        <Border DockPanel.Dock="Top" Classes="errorBanner" Margin="0,4" IsVisible="{Binding Error, Converter={x:Static ObjectConverters.IsNotNull}}">
+          <Grid ColumnDefinitions="*,Auto">
+            <TextBlock TextWrapping="Wrap" Text="{Binding Error}" VerticalAlignment="Center" />
+            <Button Grid.Column="1" Classes="subtle" Content="Dismiss" Command="{Binding DismissErrorCommand}" />
+          </Grid>
+        </Border>
+
+        <!-- Tracks: click a row's icon to open the icon panel; Cmd/Ctrl/Shift-click rows first to give several the same icon. -->
+        <ListBox Classes="rounded" Background="Transparent" controls:DragReorder.IsEnabled="True" ItemsSource="{Binding Chapters}"
+                 Selection="{Binding Selection.Model}" SelectionMode="Multiple">
+          <ListBox.ItemTemplate>
+            <DataTemplate DataType="vm:ChapterRowViewModel">
+              <Grid ColumnDefinitions="Auto,Auto,Auto,*,Auto,Auto">
+                <PathIcon Classes="dragHandle" Data="{StaticResource IconGrip}" ToolTip.Tip="Drag to reorder" AutomationProperties.Name="Drag to reorder" />
+                <Button Grid.Column="1" Classes="subtle rowPlay" Classes.playing="{Binding IsPlaying}" Command="{Binding PlayCommand}"
+                        ToolTip.Tip="{Binding PlayLabel}" AutomationProperties.Name="{Binding PlayLabel}">
+                  <Panel>
+                    <PathIcon Data="{StaticResource IconPlay}" IsVisible="{Binding !IsPlaying}" />
+                    <PathIcon Data="{StaticResource IconNowPlaying}" IsVisible="{Binding IsPlaying}" />
+                  </Panel>
+                </Button>
+                <Button Grid.Column="2" Classes="editArt" Padding="0" Background="Transparent"
+                        Command="{Binding $parent[ListBox].((vm:PlaylistEditorViewModel)DataContext).PickIconCommand}" CommandParameter="{Binding}"
+                        ToolTip.Tip="Choose icon" AutomationProperties.Name="Choose icon">
+                  <Border Classes="artwork" Width="36" Height="36">
+                    <Panel>
+                      <PathIcon Classes="noIcon" Data="{StaticResource IconPicture}" IsVisible="{Binding !HasIcon}" />
+                      <controls:PixelImage Source="{Binding Icon}" Width="32" Height="32" />
+                      <Border Classes="editScrim">
+                        <PathIcon Data="{StaticResource IconEdit}" />
+                      </Border>
+                    </Panel>
+                  </Border>
+                </Button>
+                <controls:InlineEditText Grid.Column="3" Margin="8,0" Text="{Binding Title}" MaxLength="{x:Static text:TitleCleaner.MaxTitleLength}"
+                                         ToolTip.Tip="Double-click to rename (or Enter / F2)" />
+                <TextBlock Grid.Column="4" Classes="secondary" VerticalAlignment="Center" Margin="8,0"
+                           Text="{Binding Duration, Converter={x:Static conv:DurationConverter.Instance}}" />
+                <StackPanel Grid.Column="5" Classes="rowActions" Orientation="Horizontal">
+                  <Button Classes="subtle" Command="{Binding MoveUpCommand}" ToolTip.Tip="Move up" AutomationProperties.Name="Move up">
+                    <PathIcon Data="{StaticResource IconUp}" />
+                  </Button>
+                  <Button Classes="subtle" Command="{Binding MoveDownCommand}" ToolTip.Tip="Move down" AutomationProperties.Name="Move down">
+                    <PathIcon Data="{StaticResource IconDown}" />
+                  </Button>
+                  <Button Classes="subtle" Command="{Binding RemoveCommand}" ToolTip.Tip="Remove from playlist" AutomationProperties.Name="Remove">
+                    <PathIcon Data="{StaticResource IconRemove}" />
+                  </Button>
+                </StackPanel>
+              </Grid>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </DockPanel>
+
+      <!-- Icon panel: only while picking (or asking for the AI key). -->
+      <Panel Grid.Column="1" Width="280" IsVisible="{Binding ShowPicker}">
+        <icons:IconPickerView DataContext="{Binding Picker}" />
+        <Button Classes="subtle square" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8"
+                Command="{Binding ClosePickerCommand}" ToolTip.Tip="Close (Esc)" AutomationProperties.Name="Close icon panel">
+          <PathIcon Data="{StaticResource IconRemove}" />
+        </Button>
+      </Panel>
+    </Grid>
+  </Panel>
+</UserControl>

@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OpenMyo.App.Screens.Settings"
+             x:Class="OpenMyo.App.Screens.Settings.ClaudeDesktopView"
+             x:DataType="vm:ClaudeDesktopViewModel">
+  <Border Classes="card">
+    <StackPanel Spacing="10">
+      <StackPanel Spacing="2">
+        <TextBlock Classes="headline" Text="Claude Desktop" />
+        <TextBlock Classes="secondary" TextWrapping="Wrap"
+                   Text="Rename tracks and pick icons by chatting with Claude, using your own Claude plan. No API key needed. Try “Pick icons for my Odyssey playlist”. Claude asks before each change, and changes save straight to Yoto." />
+      </StackPanel>
+      <Grid ColumnDefinitions="*,Auto">
+        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding StatusText}" />
+        <StackPanel Grid.Column="1" Margin="8,0,0,0" Orientation="Horizontal" IsVisible="{Binding IsInstalled}">
+          <Button Classes="accent" Content="Connect to Claude Desktop" Command="{Binding ConnectCommand}" IsVisible="{Binding !IsConnected}" />
+          <Button Content="Disconnect" Command="{Binding DisconnectCommand}" IsVisible="{Binding IsConnected}" />
+        </StackPanel>
+      </Grid>
+      <TextBlock Classes="secondary" Foreground="{DynamicResource DangerBrush}" TextWrapping="Wrap" Text="{Binding Error}"
+                 IsVisible="{Binding Error, Converter={x:Static ObjectConverters.IsNotNull}}" />
+    </StackPanel>
+  </Border>
+</UserControl>

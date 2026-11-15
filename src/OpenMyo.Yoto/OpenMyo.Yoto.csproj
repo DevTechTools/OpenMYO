@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Yoto Web API client: OAuth (PKCE), cards, media uploads, display icons. -->
+  <ItemGroup>
+    <ProjectReference Include="..\OpenMyo.Core\OpenMyo.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" />
+    <PackageReference Include="MQTTnet" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="OpenMyo.Yoto.Tests" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+  </ItemGroup>
+</Project>

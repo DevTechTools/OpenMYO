@@ -1,0 +1,38 @@
+<Project>
+  <!-- Central package management: versions live here only, never in a .csproj. -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <AvaloniaVersion>11.3.23</AvaloniaVersion>
+    <ExtensionsVersion>10.0.15</ExtensionsVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Anthropic" Version="13.8.0" />
+    <PackageVersion Include="Avalonia" Version="$(AvaloniaVersion)" />
+    <PackageVersion Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
+    <PackageVersion Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
+    <PackageVersion Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+    <!-- Renders views off-screen to PNG for design review (tools/OpenMyo.Snapshots). -->
+    <PackageVersion Include="Avalonia.Headless" Version="$(AvaloniaVersion)" />
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(ExtensionsVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(ExtensionsVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="$(ExtensionsVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="$(ExtensionsVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="$(ExtensionsVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="$(ExtensionsVersion)" />
+    <PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="$(ExtensionsVersion)" />
+    <!-- Official MCP C# SDK: OpenMyo.Mcp serves the Claude Desktop connector over stdio. -->
+    <PackageVersion Include="ModelContextProtocol" Version="2.3.0" />
+    <PackageVersion Include="TagLibSharp" Version="2.3.0" />
+    <!-- Yoto player remote control: Yoto accepts play/pause/volume commands only over MQTT (AWS IoT, WebSockets). MIT. -->
+    <PackageVersion Include="MQTTnet" Version="5.1.0.1559" />
+    <!-- Track playback: LibVLC streams Yoto's signed AAC/MP3 URLs and local files on macOS and Windows. -->
+    <PackageVersion Include="LibVLCSharp" Version="3.10.2" />
+    <PackageVersion Include="VideoLAN.LibVLC.Mac" Version="3.1.3.2" />
+    <PackageVersion Include="VideoLAN.LibVLC.Windows" Version="3.0.24" />
+    <!-- Test-only -->
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.12.0" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
+  </ItemGroup>
+</Project>

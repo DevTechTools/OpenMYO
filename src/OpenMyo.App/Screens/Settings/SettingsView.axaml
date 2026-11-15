@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OpenMyo.App.Screens.Settings"
+             x:Class="OpenMyo.App.Screens.Settings.SettingsView"
+             x:DataType="vm:SettingsViewModel">
+  <ScrollViewer>
+    <StackPanel Margin="32,40,32,24" Spacing="16" MaxWidth="640" HorizontalAlignment="Left">
+      <TextBlock Classes="largeTitle" Text="Settings" />
+      <Border Classes="errorBanner" IsVisible="{Binding Error, Converter={x:Static ObjectConverters.IsNotNull}}">
+        <TextBlock TextWrapping="Wrap" Text="{Binding Error}" />
+      </Border>
+
+      <Border Classes="card">
+        <StackPanel Spacing="10">
+          <TextBlock Classes="headline" Text="Yoto Account" />
+          <TextBlock Classes="secondary" TextWrapping="Wrap"
+                     Text="Register a free app at yoto.dev as a public client with redirect URI http://127.0.0.1:8787/callback, then paste its client ID here." />
+          <HyperlinkButton Content="Open yoto.dev" NavigateUri="https://yoto.dev/" Padding="0" />
+          <TextBox Watermark="Yoto client ID" Text="{Binding YotoClientId}" />
+          <Grid ColumnDefinitions="*,Auto">
+            <TextBlock VerticalAlignment="Center" Text="Signed in" IsVisible="{Binding IsSignedIn}" />
+            <TextBlock VerticalAlignment="Center" Classes="secondary" Text="Not signed in" IsVisible="{Binding !IsSignedIn}" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+              <Button Classes="accent" Content="Sign In…" Command="{Binding SignInCommand}" IsVisible="{Binding !IsSignedIn}" />
+              <Button Content="Sign Out" Command="{Binding SignOutCommand}" IsVisible="{Binding IsSignedIn}" />
+              <Button Content="Cancel" Command="{Binding CancelCommand}" IsVisible="{Binding IsBusy}" />
+            </StackPanel>
+          </Grid>
+          <TextBlock Classes="secondary" Text="{Binding Status}" />
+        </StackPanel>
+      </Border>
+
+      <Border Classes="card">
+        <StackPanel Spacing="10">
+          <StackPanel Spacing="2">
+            <TextBlock Classes="headline" Text="AI Icon Search (optional)" />
+            <TextBlock Classes="secondary" TextWrapping="Wrap"
+                       Text="“Search with AI” in any icon picker asks Claude for picture ideas. It runs only when you click it, and answers are reused." />
+          </StackPanel>
+          <StackPanel Spacing="10">
+            <TextBlock Classes="secondary" Text="Anthropic API key (stored in your system keychain)" />
+            <vm:AiKeyView DataContext="{Binding AiKey}" />
+          </StackPanel>
+          <StackPanel Spacing="10">
+            <TextBlock Classes="secondary" Text="Model" />
+            <TextBox Text="{Binding ClaudeModel}" />
+          </StackPanel>
+        </StackPanel>
+      </Border>
+
+      <vm:ClaudeDesktopView DataContext="{Binding ClaudeDesktop}" />
+
+      <Border Classes="card">
+        <StackPanel Spacing="10">
+          <TextBlock Classes="headline" Text="Uploads and downloads" />
+          <Grid ColumnDefinitions="*,Auto">
+            <TextBlock VerticalAlignment="Center" Text="Files uploaded at the same time" />
+            <NumericUpDown Grid.Column="1" Minimum="1" Maximum="8" Increment="1" Width="120" FormatString="0"
+                           Value="{Binding MaxParallelUploads}" />
+          </Grid>
+          <Grid ColumnDefinitions="*,Auto">
+            <TextBlock VerticalAlignment="Center" Text="Feed episodes downloaded at the same time" />
+            <NumericUpDown Grid.Column="1" Minimum="1" Maximum="8" Increment="1" Width="120" FormatString="0"
+                           Value="{Binding MaxParallelDownloads}" AutomationProperties.Name="Feed episodes downloaded at the same time" />
+          </Grid>
+        </StackPanel>
+      </Border>
+
+      <TextBlock Classes="secondary" HorizontalAlignment="Center" Text="OpenMyo is unofficial and not affiliated with Yoto." />
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

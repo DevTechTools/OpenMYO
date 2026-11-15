@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:OpenMyo.App.Screens.Library"
+             x:Class="OpenMyo.App.Screens.Library.BulkActionsView"
+             x:DataType="vm:BulkActionsViewModel">
+  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12" MinWidth="320">
+    <TextBlock Classes="largeTitle" HorizontalAlignment="Center"
+               Text="{Binding SelectedRows.Count, StringFormat='{}{0} playlists selected'}" />
+    <Button Classes="accent" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+            Content="Match Missing Icons" Command="{Binding MatchMissingIconsCommand}" />
+    <Button Classes="danger" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+            Content="Delete Playlists…" Command="{Binding DeleteCommand}" IsVisible="{Binding !IsConfirmingDelete}" />
+    <Grid ColumnDefinitions="*,8,*" IsVisible="{Binding IsConfirmingDelete}">
+      <Button Classes="danger" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+              Content="Delete (can't be undone)" Command="{Binding DeleteCommand}" />
+      <Button Grid.Column="2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+              Content="Keep" Command="{Binding CancelDeleteCommand}" />
+    </Grid>
+    <TextBlock Classes="secondary" HorizontalAlignment="Center" Text="{Binding Status}" />
+    <ProgressBar Value="{Binding Progress}" Maximum="1" IsVisible="{Binding IsBusy}" />
+    <TextBlock Foreground="{DynamicResource DangerBrush}" TextWrapping="Wrap" Text="{Binding Error}" />
+  </StackPanel>
+</UserControl>
