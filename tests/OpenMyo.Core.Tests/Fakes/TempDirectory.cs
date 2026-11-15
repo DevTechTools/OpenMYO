@@ -14,13 +14,17 @@ public sealed class TempDirectory : IDisposable
     /// <summary>Creates a file (and any parent folders) and returns its full path.</summary>
     public string CreateFile(string relativePath, byte[]? content = null)
     {
-        var fullPath = System.IO.Path.Combine(Path, relativePath);
+        var fullPath = Combine(relativePath);
         Directory.CreateDirectory(System.IO.Path.GetDirectoryName(fullPath)!);
         File.WriteAllBytes(fullPath, content ?? []);
         return fullPath;
     }
 
-    public string Combine(string relativePath) => System.IO.Path.Combine(Path, relativePath);
+    /// <summary>
+    /// Joins <paramref name="relativePath"/> (written with '/') to the folder, normalized to the platform's
+    /// separators so it matches paths returned by <see cref="Directory.EnumerateFiles(string)"/> on Windows.
+    /// </summary>
+    public string Combine(string relativePath) => System.IO.Path.GetFullPath(System.IO.Path.Combine(Path, relativePath));
 
     public void Dispose()
     {
