@@ -207,5 +207,6 @@ Names are whole words (`playlist`, not `pl`); loop indexes and lambdas over obvi
 
 - Small, focused commits in imperative mood: `Add trigram icon index`.
 - One logical change per pull request; CI (build + tests + size check on macOS and Windows) must pass.
-- Update `README.md`, `docs/ARCHITECTURE.md`, `docs/design/`, `docs/how-to.md` or this file in the same PR
+- Update `README.md`, the pages under `docs/` (user pages for behaviour, `docs/contribute/` for design and
+  workflow, plus `docs/toc.yml` for new pages) or this file in the same PR
   when behaviour or rules change.

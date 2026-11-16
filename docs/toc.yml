@@ -1,0 +1,116 @@
+items:
+  - name: OpenMyo documentation
+    href: index.md
+  - name: Use OpenMyo
+    items:
+      - name: Overview
+        expanded: true
+        items:
+          - name: What is OpenMyo?
+            href: user/overview.md
+      - name: Quickstarts
+        items:
+          - name: Sign in and run OpenMyo
+            href: user/quickstart.md
+      - name: How-to guides
+        items:
+          - name: Build the app
+            href: user/build-the-app.md
+          - name: Import folders of audio
+            href: user/import-folders.md
+          - name: Import a podcast feed
+            href: user/import-podcast-feed.md
+          - name: Browse and search your library
+            href: user/library-and-search.md
+          - name: Edit playlists
+            href: user/edit-playlists.md
+          - name: Match icons
+            href: user/match-icons.md
+          - name: Play audio here or on a Yoto player
+            href: user/play-audio.md
+          - name: Use OpenMyo with Claude Desktop
+            href: user/use-with-claude-desktop.md
+      - name: Reference
+        items:
+          - name: Data locations
+            href: user/reference/data-locations.md
+  - name: Contribute
+    items:
+      - name: Architecture
+        items:
+          - name: Overview
+            href: contribute/architecture/overview.md
+          - name: Invariants
+            href: contribute/architecture/invariants.md
+          - name: Cross-cutting concerns
+            href: contribute/architecture/cross-cutting-concerns.md
+      - name: Concepts
+        items:
+          - name: Yoto client
+            items:
+              - name: Card model
+                href: contribute/concepts/card-model.md
+              - name: HTTP pipeline
+                href: contribute/concepts/yoto-http-pipeline.md
+              - name: Sign-in and tokens
+                href: contribute/concepts/sign-in-and-tokens.md
+              - name: Read and save cards
+                href: contribute/concepts/read-and-save-cards.md
+              - name: Media uploads
+                href: contribute/concepts/media-uploads.md
+          - name: Import
+            items:
+              - name: Import pipeline
+                href: contribute/concepts/import-pipeline.md
+              - name: Podcast feed import
+                href: contribute/concepts/podcast-feed-import.md
+          - name: Icons
+            items:
+              - name: Icon matching
+                href: contribute/concepts/icon-matching.md
+              - name: AI icon search
+                href: contribute/concepts/ai-icon-search.md
+              - name: Community icons
+                href: contribute/concepts/community-icons.md
+          - name: Desktop app
+            items:
+              - name: Start-up and composition
+                href: contribute/concepts/app-startup.md
+              - name: Navigation and commands
+                href: contribute/concepts/navigation-and-commands.md
+              - name: Library and editor
+                href: contribute/concepts/library-and-editor.md
+              - name: Claude Desktop connector
+                href: contribute/concepts/claude-desktop-connector.md
+          - name: Search and players
+            items:
+              - name: Track search
+                href: contribute/concepts/track-search.md
+              - name: Yoto player control
+                href: contribute/concepts/yoto-player-control.md
+      - name: How-to guides
+        items:
+          - name: Call a new Yoto endpoint
+            href: contribute/how-to/call-yoto-endpoint.md
+          - name: Store a new card field
+            href: contribute/how-to/add-card-field.md
+          - name: Add domain logic
+            href: contribute/how-to/add-domain-logic.md
+          - name: Add a setting or a secret
+            href: contribute/how-to/add-setting-or-secret.md
+          - name: Add a Claude Desktop tool
+            href: contribute/how-to/add-claude-desktop-tool.md
+          - name: Add a page to the navigation rail
+            href: contribute/how-to/add-navigation-page.md
+          - name: Add a panel to a screen
+            href: contribute/how-to/add-panel.md
+          - name: Render screens without signing in
+            href: contribute/how-to/render-screen-snapshots.md
+          - name: Improve icon matches
+            href: contribute/how-to/improve-icon-matches.md
+      - name: Reference
+        items:
+          - name: Design decisions
+            href: contribute/reference/design-decisions.md
+          - name: Glossary
+            href: contribute/reference/glossary.md
