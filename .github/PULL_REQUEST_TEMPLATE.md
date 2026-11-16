@@ -12,7 +12,7 @@
 - [ ] Tests added or updated; bug fixes include a failing-first test (section 9)
 - [ ] UI changes follow section 8 (compiled bindings, Discord-style design, keyboard, accessibility)
 - [ ] New packages justified below and added only to `Directory.Packages.props` (section 11)
-- [ ] README / `docs/ARCHITECTURE.md` / CODESTANDARDS updated if behaviour or rules changed
+- [ ] README / `docs/` pages (and `docs/toc.yml`) / CODESTANDARDS updated if behaviour or rules changed
 
 ## Notes for reviewers
 

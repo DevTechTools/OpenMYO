@@ -6,21 +6,26 @@ truth for review. AI agents should also read [CLAUDE.md](CLAUDE.md).
 ## Setup
 
 1. Install the .NET 10 SDK (see `global.json`).
-2. Clone the repository and run `dotnet build OpenMyo.sln`.
-3. To run the app, register your own Yoto application as described in the [README](README.md) and
-   paste the client id into Settings.
+1. Clone the repository and run `dotnet build OpenMyo.sln`.
+1. To run the app, register your own Yoto app as described in
+   [Quickstart: Sign in and run OpenMyo](docs/user/quickstart.md) and paste the client id into
+   **Settings**.
 
 ## Start here
 
-- **New to the code:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), the system, code map and invariants.
-- **Adding a page or panel:** [src/OpenMyo.App/README.md](src/OpenMyo.App/README.md), then
-  [How to add a page to the sidebar](docs/how-to.md#how-to-add-a-page-to-the-sidebar).
-- **Adding a Yoto API call or card field:** [docs/how-to.md](docs/how-to.md#how-to-call-a-new-yoto-endpoint).
-- **Adding a setting or secret:** [docs/how-to.md](docs/how-to.md#how-to-add-a-setting-or-a-secret).
-- **Adding a Claude Desktop tool:** [docs/how-to.md](docs/how-to.md#how-to-add-a-claude-desktop-tool).
-- **Icon matches look wrong:** [How to improve icon matches](docs/how-to.md#how-to-improve-icon-matches),
-  background in [docs/design/icon-matching.md](docs/design/icon-matching.md).
-- **Changing import, sign-in or saving:** the matching explanation in [docs/design/](docs/design).
+| If you're… | Read |
+|---|---|
+| New to the code | [Architecture overview](docs/contribute/architecture/overview.md), then the [invariants](docs/contribute/architecture/invariants.md) |
+| Adding a page or panel | [Navigation and commands](docs/contribute/concepts/navigation-and-commands.md), then [Add a page to the navigation rail](docs/contribute/how-to/add-navigation-page.md) or [Add a panel to a screen](docs/contribute/how-to/add-panel.md) |
+| Adding a Yoto API call or card field | [Call a new Yoto endpoint](docs/contribute/how-to/call-yoto-endpoint.md), [Store a new card field](docs/contribute/how-to/add-card-field.md) |
+| Adding a setting or secret | [Add a setting or a secret](docs/contribute/how-to/add-setting-or-secret.md) |
+| Adding a Claude Desktop tool | [Add a Claude Desktop tool](docs/contribute/how-to/add-claude-desktop-tool.md) |
+| Fixing icon matches that look wrong | [Improve icon matches](docs/contribute/how-to/improve-icon-matches.md), background in [Icon matching](docs/contribute/concepts/icon-matching.md) |
+| Changing import, sign-in or saving | The matching page under [docs/contribute/concepts/](docs/contribute/concepts) |
+
+Every page is listed in [docs/toc.yml](docs/toc.yml). New pages follow the Microsoft Learn conventions the
+existing ones use: front matter with `title`, `description`, `ms.topic` and `ms.date`, one topic per page,
+and a `## Related content` section at the end. Add each new page to `docs/toc.yml`.
 
 ## Workflow
 
@@ -49,7 +54,7 @@ CI runs the same steps on macOS and Windows and must pass before merge.
 - I/O is async with a trailing `CancellationToken`; bounded parallelism (section 5)
 - Efficiency: streaming, caching and typed `HttpClient`s (section 6)
 - No secrets in files, logs or URLs; external input validated (section 7)
-- UI follows MVVM, compiled bindings, Discord-style design design, keyboard and accessibility rules (section 8)
+- UI follows MVVM, compiled bindings, Discord-style design, keyboard and accessibility rules (section 8)
 - Tests follow `Method_Scenario_ExpectedResult` and never touch the network or real keychains
   (section 9)
 - Public types have useful XML docs; no commented-out code or unlinked TODOs (section 10)

@@ -6,9 +6,11 @@ Guidance for Claude (and other AI coding agents) working in this repository.
 
 1. **[CODESTANDARDS.md](CODESTANDARDS.md)** is mandatory. Every change must follow it, especially the
    dependency rules (§1), size limits (§2), async rules (§5) and UI rules (§8).
-2. [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): what OpenMyo is, its containers, the code map and the
-   invariants. Details per area are in [docs/design/](docs/design); step-by-step guides for common
-   changes are in [docs/how-to.md](docs/how-to.md).
+2. [docs/contribute/architecture/overview.md](docs/contribute/architecture/overview.md): what OpenMyo is
+   its containers and [projects](docs/contribute/architecture/overview.md#projects), with the
+   [invariants](docs/contribute/architecture/invariants.md) beside it. Details per area are in
+   [docs/contribute/concepts/](docs/contribute/concepts); step-by-step guides for common changes are in
+   [docs/contribute/how-to/](docs/contribute/how-to). [docs/toc.yml](docs/toc.yml) lists every page.
 
 ## What this is
 
@@ -36,7 +38,7 @@ eng/check-file-sizes.sh           # enforce CODESTANDARDS §2 file limits
 | Yoto HTTP calls, JSON mapping, OAuth | `src/OpenMyo.Yoto/<Feature>/` |
 | Claude prompt / API call | `src/OpenMyo.Claude/` |
 | Keychain/DPAPI, tags, settings, paths | `src/OpenMyo.Infrastructure/<Feature>/` |
-| Screens and view models, styles | `src/OpenMyo.App/Screens/<Feature>/` (view beside view model), `src/OpenMyo.App/Styles/`; see `src/OpenMyo.App/README.md` and `docs/how-to.md` |
+| Screens and view models, styles | `src/OpenMyo.App/Screens/<Feature>/` (view beside view model), `src/OpenMyo.App/Styles/`; see `docs/contribute/concepts/navigation-and-commands.md` and `docs/contribute/how-to/` |
 | Service registration | each project's `ServiceCollectionExtensions.cs`; wired in `src/OpenMyo.App/Composition/` |
 
 ## Rules of thumb for agents
