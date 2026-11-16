@@ -89,6 +89,22 @@ with no matches at all falls back to matches for the playlist title.
    scores better than Yoto's best.
 6. Sets the winner on each chapter and its tracks. Nothing is saved; the caller saves.
 
+```mermaid
+flowchart TD
+    accTitle: Auto-matching icons for a playlist
+    accDescr: Chapters that already have an icon are skipped unless replacing. Series words are removed, each title is reduced to its subject and searched. A community icon wins only when it scores better than the best Yoto icon.
+    titles["Chapter titles"] --> skip{"Already has an icon<br/>and not replacing?"}
+    skip -->|yes| keep["Leave as is"]
+    skip -->|no| series["Drop series words"]
+    series --> subject["Reduce to the subject"]
+    subject --> search["Search the icon index"]
+    search --> better{"Community icon<br/>scores better?"}
+    better -->|yes| comm["Use community icon"]
+    better -->|no| yoto["Use best Yoto or library icon"]
+    comm --> set["Set on chapter and tracks<br/>(caller saves)"]
+    yoto --> set
+```
+
 ### Number icons
 
 Track *n* can get an icon showing *n*. Yoto's own number icon is used when it exists; otherwise a 16×16 PNG

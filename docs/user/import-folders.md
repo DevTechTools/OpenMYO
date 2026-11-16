@@ -26,6 +26,22 @@ Use bulk import to turn folders or audio files into Yoto playlists. Each folder 
 
 **Order.** Tracks are ordered by disc and track tags, then leading numbers, then name.
 
+**Folders.** Every folder that holds audio becomes one playlist. Disc folders such as `CD1` and `CD2` join the folder above them, so a two-CD audiobook becomes one playlist:
+
+```mermaid
+flowchart LR
+    accTitle: How folders become playlists
+    accDescr: An audiobook folder with CD1 and CD2 subfolders becomes one playlist. A separate songs folder becomes a second playlist.
+    subgraph disk["Folders you drop"]
+        book["Gruffalo audiobook/"] --- cd1["CD1/"]
+        book --- cd2["CD2/"]
+        songs["Bedtime songs/"]
+    end
+    cd1 --> p1["Playlist: Gruffalo audiobook"]
+    cd2 --> p1
+    songs --> p2["Playlist: Bedtime songs"]
+```
+
 **Cover art.** The cover comes from an image in the folder (`cover.jpg`, `folder.jpg`, and so on) or from art embedded in the audio.
 
 **Track icons.** A track gets an icon from an image with the same base name as its audio file. To match icons from titles instead, see [Match icons to tracks](match-icons.md).

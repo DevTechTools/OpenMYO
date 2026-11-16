@@ -19,6 +19,19 @@ Both build the same services, so a feature in Core is available to the screens a
   MCP over stdio. Avalonia never starts, and nothing else may write to stdout. See
   [Claude Desktop connector](claude-desktop-connector.md).
 
+```mermaid
+flowchart TD
+    accTitle: Launch modes
+    accDescr: The same executable either starts the window, restoring the session and opening the library or Settings, or with --mcp builds the same services and serves tools over stdio without a window.
+    main["Program.Main"] -->|no arguments| win["Build services,<br/>show main window"]
+    main -->|--mcp| conn["Build the same services,<br/>no window"]
+    win --> restore{"Stored session<br/>still works?"}
+    restore -->|yes| lib["Open the library"]
+    restore -->|no| settings["Open Settings to sign in"]
+    conn --> silent["Restore session silently<br/>(never opens a browser)"]
+    silent --> stdio["Serve tools over stdio"]
+```
+
 ## Composition root
 
 [`ServiceRegistration.Build`](../../../src/OpenMyo.App/Composition/ServiceRegistration.cs) is the composition

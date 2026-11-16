@@ -14,6 +14,21 @@ network access. Then the screen asks for icon suggestions, the user reviews, and
 playlist. Podcast feeds skip `DraftBuilder` but join the same screen and publishing path. See
 [Podcast feed import](podcast-feed-import.md).
 
+```mermaid
+flowchart LR
+    accTitle: From dropped files to a created playlist
+    accDescr: Dropped files are grouped, ordered, titled and given artwork offline to make drafts. Podcast feeds make drafts too. The user reviews drafts with icon suggestions, then publishing uploads media and creates the card.
+    files["Dropped folders<br/>and files"] --> group["Group into<br/>playlists"] --> order["Order<br/>tracks"] --> titles["Clean<br/>titles"] --> art["Find<br/>artwork"] --> drafts["Drafts"]
+    feed["Podcast feed"] -.-> drafts
+    drafts --> review["Icon suggestions<br/>and user review"] --> publish["Upload audio, icons, cover"] --> card["Create card<br/>(one save)"]
+    subgraph offline["Offline, no network"]
+        group
+        order
+        titles
+        art
+    end
+```
+
 ## Which files become which playlist
 
 - Dropped folders are expanded recursively to audio files; hidden files are skipped.

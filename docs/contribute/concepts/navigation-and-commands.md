@@ -31,6 +31,19 @@ see [Add a page to the navigation rail](../how-to/add-navigation-page.md) and
   [`ScreenLinks`](../../../src/OpenMyo.App/Composition/ScreenLinks.cs) subscribes to page events and calls
   the other page, so every cross-page link is in one file.
 
+```mermaid
+flowchart LR
+    accTitle: How view models talk to each other
+    accDescr: A page owns its child panels and calls them directly. Children raise events back to their parent. Pages never reference each other; ScreenLinks listens to page events and calls the other page.
+    subgraph pageA["Page view model"]
+        child["Child panel"]
+    end
+    pageA -->|owns, calls| child
+    child -.->|raises events| pageA
+    pageA -.->|events| links["ScreenLinks"]
+    links -->|calls| pageB["Other page view model"]
+```
+
 ## Commands
 
 Every button and menu item runs a command on a view model: the view binds `Command="{Binding …}"`, and the

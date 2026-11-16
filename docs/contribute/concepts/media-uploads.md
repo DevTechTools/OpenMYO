@@ -22,6 +22,19 @@ to Yoto.
 4. Poll `media/upload/{id}/transcoded` (404 means "not yet") with backoff until a timeout.
 5. Return `yoto:#<transcodedSha256>` with the format, duration, size and channels Yoto reports.
 
+```mermaid
+flowchart TD
+    accTitle: Uploading an audio file
+    accDescr: The file is hashed and Yoto is asked for an upload URL. Only new bytes are uploaded. The uploader then polls until Yoto finishes transcoding, and returns the media reference.
+    hash["Hash the file"] --> ask["Ask Yoto for an upload URL"]
+    ask --> seen{"Yoto already has<br/>these bytes?"}
+    seen -->|no| put["PUT the file to storage"]
+    seen -->|yes| poll
+    put --> poll{"Transcoded yet?"}
+    poll -->|not yet| wait["Wait, back off"] --> poll
+    poll -->|done| ref["Return yoto:# reference<br/>and media details"]
+```
+
 ## Cover
 
 `POST media/coverImage/user/me/upload` returns a public URL that goes in `metadata.cover.imageL`.

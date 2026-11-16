@@ -13,6 +13,8 @@ See [App start-up and composition](app-startup.md) for how connector mode boots.
 
 ```mermaid
 sequenceDiagram
+    accTitle: A Claude Desktop tool call
+    accDescr: Claude Desktop starts OpenMyo with --mcp and calls a tool over stdio. The tool validates its input, loads the playlist, saves once and returns the previous values so Claude can undo.
     participant D as Claude Desktop
     participant M as Connector (stdio)
     participant T as Tool class (from DI)

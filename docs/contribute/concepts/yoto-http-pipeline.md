@@ -23,6 +23,33 @@ A request on `yoto-api` goes through the handlers in order:
 2. The auth handler adds `Authorization: Bearer …`. On a **401** it asks the session for a new token once and
    resends once.
 
+```mermaid
+sequenceDiagram
+    accTitle: A request through the Yoto API client
+    accDescr: The retry handler passes the request to the auth handler, which adds the bearer token. A 401 triggers one token refresh and one resend. A 429 or 503 makes the retry handler wait and try again.
+    participant Caller
+    participant Retry as Retry handler
+    participant Auth as Auth handler
+    participant Session as Yoto session
+    participant API as Yoto API
+
+    Caller->>Retry: Request
+    Retry->>Auth: Attempt
+    Auth->>Session: Access token
+    Auth->>API: Request + bearer token
+    alt 401
+        API-->>Auth: 401
+        Auth->>Session: Refresh (once)
+        Auth->>API: Resend once
+    end
+    alt 429 or 503
+        API-->>Retry: 429 / 503
+        Retry->>Retry: Wait (Retry-After)
+        Retry->>Auth: Next attempt
+    end
+    API-->>Caller: Response, or YotoApiException
+```
+
 Both only resend when the body can be sent again. The upload client deliberately has no auth handler, so the
 bearer token never reaches the storage host. Non-success responses become `YotoApiException`.
 

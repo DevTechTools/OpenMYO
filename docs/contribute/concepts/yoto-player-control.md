@@ -51,6 +51,24 @@ neighbouring chapter or a new `secondsIn`.
 
 `YotoPlayerRemote` holds one shared connection per player; the bar, the live list and commands all use it:
 
+```mermaid
+stateDiagram-v2
+    accTitle: Lifecycle of one player connection
+    accDescr: After sign-in each online player is connected and watched. Keep-alives stop Yoto closing a quiet connection. An unexpected drop is retried once; if that fails the player is reported gone. Sign-out closes the connection.
+    [*] --> Watching: Sign-in, player online
+    Watching --> Watching: Keep-alive / state events
+    Watching --> Controlling: Chosen as output
+    Controlling --> Watching: Output switched away
+    Watching --> Retrying: Unexpected drop
+    Controlling --> Retrying: Unexpected drop
+    Retrying --> Watching: Reconnected with fresh token
+    Retrying --> Gone: Second failure
+    Gone --> [*]
+    Watching --> [*]: Sign-out
+    Controlling --> [*]: Sign-out
+```
+
+
 - From sign-in the app connects to every online player so it can show ones already playing. Watching only
   listens. Signing out closes every connection.
 - Switching the output away from a player does not disconnect it; the live list keeps watching it.

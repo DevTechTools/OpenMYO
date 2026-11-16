@@ -35,6 +35,18 @@ drag-reorder, icon, delete) sets `IsDirty`.
 - **Revert** shows `_original` again.
 - **Add tracks** and **Change cover** upload first and then save immediately.
 
+```mermaid
+stateDiagram-v2
+    accTitle: Editor states
+    accDescr: A loaded playlist becomes dirty after any edit. Save writes it to Yoto and shows the saved result; Revert goes back to the loaded playlist.
+    [*] --> Clean: Playlist opened
+    Clean --> Dirty: Rename, reorder, icon, delete
+    Dirty --> Dirty: More edits
+    Dirty --> Clean: Save (patches the card)
+    Dirty --> Clean: Revert (back to original)
+    Clean --> Clean: Add tracks / change cover (saves at once)
+```
+
 The editor's command groups live beside it in `Screens/Editor/`. They reach the editor only through
 `IChapterEditor` (run work, read the current playlist, apply changed chapters), which keeps the editor file
 small.

@@ -30,6 +30,18 @@ Because saving replaces the whole card, rebuilding JSON from the domain model wo
 OpenMyo does not model (and Yoto adds fields over time). So a save *patches* the last-fetched document
 instead. [`CardComposer`](../../../src/OpenMyo.Yoto/Content/CardComposer.cs) is the entry point:
 
+```mermaid
+flowchart LR
+    accTitle: Saving a card by patching the last-fetched document
+    accDescr: The last-fetched raw card and the edited playlist are combined. Raw chapters are matched by key and cloned, then renumbered, and the whole card is posted back to Yoto.
+    raw["Last-fetched raw card<br/>(cache or GET)"] --> clone["Deep clone,<br/>drop server-managed fields"]
+    edit["Edited playlist<br/>(order, titles, icons)"] --> match
+    clone --> match["Match each chapter<br/>to its raw node by key"]
+    match --> renum["Renumber keys,<br/>set labels and icons"]
+    renum --> post["POST content<br/>(replaces the whole card)"]
+```
+
+
 1. `SaveAsync` takes the cached raw card (or fetches it) as the base.
 2. The composer deep-clones it, removes server-managed fields (`createdAt`, `updatedAt`, `_id`, `userId`),
    checks title lengths, and sets the title, cover URL and totals.

@@ -31,6 +31,8 @@ the Model Context Protocol (MCP).
 title: System context diagram for OpenMyo
 ---
 flowchart TB
+    accTitle: System context diagram for OpenMyo
+    accDescr: A card maker uses OpenMyo directly or through Claude Desktop. OpenMyo talks to the Yoto platform, and optionally to yotoicons.com and the Anthropic API.
     user["<b>Card maker</b><br/>[Person]<br/>A parent or teacher who makes<br/>Yoto MYO cards"]:::person
     claudeDesktop["<b>Claude Desktop</b><br/>[Software system, external, optional]<br/>Chat app that can call<br/>OpenMyo's tools"]:::ext
     openmyo["<b>OpenMyo</b><br/>[Software system]<br/>Bulk-creates and tidies<br/>MYO playlists"]:::system
@@ -64,6 +66,8 @@ flowchart TB
 title: Container diagram for OpenMyo
 ---
 flowchart LR
+    accTitle: Container diagram for OpenMyo
+    accDescr: The desktop app and the windowless Claude Desktop connector are one executable. Both share the OS secret store, the data and cache folders, and call Yoto, yotoicons.com and, from the app only, Anthropic.
     user["<b>Card maker</b><br/>[Person]"]:::person
     claudeDesktop["<b>Claude Desktop</b><br/>[Software system, external]"]:::ext
 
